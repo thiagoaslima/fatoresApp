@@ -1,0 +1,10 @@
+<form>
+    <label for="login-nome">Nome</label>
+    <input name="nome" id="login-nome" type="text">
+    
+    <label for="login-senha">Senha</label>
+    <input name="senha" id="login-senha" type="{{typePasswordField}}">
+    
+    <input type="radio" value="password" ng-model="typePasswordField" checked="true" />Password
+    <input type="radio" value="text" ng-model="typePasswordField" />Text
+</form>
