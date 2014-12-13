@@ -22,7 +22,8 @@
          * Feature areas
          */
         'app.auth',
-        'app.layout'
+        'app.layout',
+        'app.logger'
         
     ]);
 })(window.angular);

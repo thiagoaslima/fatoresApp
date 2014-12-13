@@ -20,6 +20,7 @@
         /*
          * 3rd Party modules
          */
+        'toaster',
         'ui.router',
         'LocalStorageModule',
         'app.directives'

@@ -17,13 +17,9 @@
     }
 
     function compiler(element, attrs) {
-        console.log(element, arguments);
-
         var $el = (attrs.tag) ? angular.element('<' + attrs.tag + '>') : angular.element('<h2>');
         $el.html('{{page.title}}');
-
         element.append($el);
-        console.log(element);
     }
     
     controller.$inject = ['$scope', 'appInfo'];
