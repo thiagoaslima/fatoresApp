@@ -1,0 +1,210 @@
+<main class="app-view clearfix">
+
+    <!-- EMPRESAS -->
+    <ul class="list">
+        <li class="list-item--subheader list-item--with-icons">
+            <span class="icon-empresa icon--primary"></span>
+            <p class="text text--subheader">Empresa</p>
+        </li>
+
+        <li class="list-item list-item--with-icons list-item--divider">
+            <div>
+                <p class="text text--primary list-selection" ng-click="openModal($event, 'empresas')">
+                    <span ng-if="!ctrl.empresas || ctrl.empresas.length === 0" class="disabled">Não há opções disponíveis</span>
+                    <span ng-if="ctrl.empresas.length > 0 && !ctrl.selected.empresas" class="disabled">Selecione um item</span>
+                    {{ctrl.selected.empresas.RazaoSocial}}
+                </p>
+
+                <nav class="list list-selector" ng-show="modal.empresas">
+                    <ul>
+                    <li class="list-item list-item--with-icons list-item--divider" ng-repeat="empresa in ctrl.empresas">
+                        <input id="empresa_{{$index}}" class="icon--primary" type="radio" ng-click="ctrl.select('empresas', empresa)" ng-model="ctrl.selected.empresas" ng-value="empresa">
+                        <label for="empresa_{{$index}}" class="text text--primary">{{empresa.RazaoSocial}}</label>
+                    </li>
+                </ul>
+                </nav>
+            </div>
+            <!-- <img src="img/hang.png" class="icon--secondary"> -->
+        </li>
+    </ul>
+
+
+
+
+
+    <!-- OBRAS -->
+    <ul class="list">
+        <li class="list-item--subheader list-item--with-icons">
+            <span class="icon-obra icon--primary"></span>
+            <p class="text text--subheader">Obra</p>
+        </li>
+
+
+        <!-- EMPREENDIMENTOS -->
+        <li class="list-item list-item--with-icons list-item--divider">
+            <div>
+                <p class="text text--secondary">Empreendimento</p>
+                <p class="text text--primary list-selection" ng-click="openModal($event, 'empreendimentos')">
+                    <span ng-if="!ctrl.empreendimentos || ctrl.empreendimentos.length === 0" class="disabled">Selecione os itens anteriores</span>
+                    <span ng-if="ctrl.empreendimentos.length > 0 && !ctrl.selected.empreendimentos" class="disabled">Selecione um item</span>
+                    {{ctrl.selected.empreendimentos.Nome}}
+                </p>
+
+                <nav class="list list-selector" ng-show="modal.empreendimentos">
+                    <ul>
+                    <li class="list-item list-item--with-icons list-item--divider" ng-repeat="empreendimento in ctrl.empreendimentos">
+                        <input id="empreendimento_{{$index}}" class="icon--primary" type="radio" ng-click="ctrl.select('empreendimentos', empreendimento)" ng-model="ctrl.selected.empreendimentos" ng-value="ctrl.empreendimentos[$index]">
+                        <label for="empreendimento_{{$index}}" class="text text--primary">{{empreendimento.Nome}}</label>
+                    </li>
+                </ul>
+                </nav>
+            </div>
+            
+            <!-- <img src="img/hang.png" class="icon--secondary"> -->
+        </li>
+
+
+
+        <!-- OBRAS -->
+        <li class="list-item list-item--with-icons list-item--divider" ng-show="ctrl.obras.length > 0">
+            <div>
+                <p class="text text--secondary">Obra</p>
+                <p class="text text--primary list-selection" ng-click="openModal($event, 'obras')">
+                    <span ng-if="!ctrl.obras || ctrl.obras.length === 0" class="disabled">Selecione os itens anteriores</span>
+                    <span ng-if="ctrl.obras.length > 0 && !ctrl.selected.obras" class="disabled">Selecione um item</span>
+                    {{ctrl.selected.obras.Nome}}
+                </p>
+
+                <nav class="list list-selector" ng-show="modal.obras">
+                    <ul>
+                    <li class="list-item list-item--with-icons list-item--divider" ng-repeat="obra in ctrl.obras">
+                        <input id="obras_{{$index}}" class="icon--primary" type="radio" ng-click="ctrl.select('obras', obra)" ng-model="ctrl.selected.obras" ng-value="obra" />
+                        <label for="obras_{{$index}}" class="text text--primary">{{obra.Nome}}</label>
+                    </li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <!-- <img src="img/hang.png" class="icon--secondary"> -->
+        </li>
+
+
+        <!-- FRACOES -->
+        <li class="list-item list-item--with-icons list-item--divider" ng-show="ctrl.fracoes.length > 0">
+            <div>
+                <p class="text text--secondary">Fração da obra</p>
+                <p class="text text--primary list-selection" ng-click="openModal($event, 'fracoes')">
+                    <span ng-if="!ctrl.fracoes || ctrl.fracoes.length === 0" class="disabled">Selecione os itens anteriores</span>
+                    <span ng-if="ctrl.fracoes.length > 0 && !ctrl.selected.fracoes" class="disabled">Selecione um item</span>
+                    {{ctrl.selected.fracoes.Nome}}
+                </p>
+
+                <nav class="list list-selector" ng-show="modal.fracoes">
+                    <ul>
+                    <li class="list-item list-item--with-icons list-item--divider" ng-repeat="fracao in ctrl.fracoes">
+                        <input id="fracao_{{$index}}" class="icon--primary" type="radio" ng-click="ctrl.select('fracoes', fracao)" ng-model="ctrl.selected.fracoes" ng-value="fracao" />
+                        <label for="fracao_{{$index}}" class="text text--primary">{{fracao.Nome}}</label>
+                    </li>
+                </ul>
+                </nav>
+            </div>
+            
+            <!-- <img src="img/hang.png" class="icon--secondary"> -->
+        </li>
+
+
+
+        <!-- SUBFRACOES -->
+        <li class="list-item list-item--with-icons list-item--divider" ng-show="ctrl.subfracoes.length > 0">
+            <div>
+                <p class="text text--secondary">Subfração da obra</p>
+                <p class="text text--primary list-selection" ng-click="openModal($event, 'subfracoes')">
+                    <span ng-if="!ctrl.subfracoes || ctrl.subfracoes.length === 0" class="disabled">Selecione os itens anteriores</span>
+                    <span ng-if="ctrl.subfracoes.length > 0 && !ctrl.selected.subfracoes" class="disabled">Selecione um item</span>
+                    {{ctrl.selected.subfracoes.Nome}}
+                </p>
+
+                <nav class="list list-selector" ng-show="modal.subfracoes">
+                    <ul>
+                    <li class="list-item list-item--with-icons list-item--divider" ng-repeat="subfracao in ctrl.subfracoes">
+                        <input id="subfracao_{{$index}}" class="icon--primary" type="radio" ng-click="ctrl.select('subfracoes', subfracao)" ng-model="ctrl.selected.subfracoes" ng-value="subfracao" />
+                        <label for="subfracao_{{$index}}" class="text text--primary">{{subfracao.Nome}}</label>
+                    </li>
+                </ul>
+                </nav>
+            </div>
+            
+            <!-- <img src="img/hang.png" class="icon--secondary"> -->
+        </li>
+    </ul>
+
+
+    <!-- CONTRATADAS -->
+    <ul class="list">
+        <li class="list-item--subheader list-item--with-icons">
+            <span class="icon-empresa icon--primary"></span>
+            <p class="text text--subheader">Contratada</p>
+        </li>
+
+        <li class="list-item list-item--with-icons list-item--divider">
+            <div>
+                <p class="text text--primary list-selection" ng-click="openModal($event, 'contratadas')">
+                    <span ng-if="!ctrl.contratadas || ctrl.contratadas.length === 0" class="disabled">Selecione os itens anteriores</span>
+                    <span ng-if="ctrl.contratadas.length > 0 && !ctrl.selected.contratadas" class="disabled">Selecione um item</span>
+                    {{ctrl.selected.contratadas.RazaoSocial}}
+                </p>
+
+                <nav class="list list-selector" ng-show="modal.contratadas">
+                    <ul>
+                    <li class="list-item list-item--with-icons list-item--divider" ng-repeat="contratada in ctrl.contratadas">
+                        <input id="contratada_{{$index}}" class="icon--primary" type="radio" ng-click="ctrl.select('contratadas', contratada)" ng-model="ctrl.selected.contratadas" ng-value="contratada" />
+                        <label for="contratada_{{$index}}" class="text text--primary">{{contratada.RazaoSocial}}</label>
+                    </li>
+                </ul>
+                </nav>
+            </div>
+            <!-- <img src="img/hang.png" class="icon--secondary"> -->
+        </li>
+    </ul>
+
+
+
+    <!-- TAREFAS -->
+    <ul class="list">
+        <li class="list-item--subheader list-item--with-icons">
+            <span class="icon-tarefa icon--primary"></span>
+            <p class="text text--subheader">Tarefa</p>
+        </li>
+
+        <li class="list-item list-item--with-icons list-item--divider">
+            <div>
+                <p class="text text--primary list-selection" ng-click="openModal($event, 'tarefas')">
+                    <span ng-if="!ctrl.tarefas || ctrl.tarefas.length === 0" class="disabled">Selecione os itens anteriores</span>
+                    <span ng-if="ctrl.tarefas.length > 0 && !ctrl.selected.tarefas" class="disabled">Selecione um item</span>
+                    {{ctrl.selected.tarefas.Nome}}
+                </p>
+
+                <nav class="list list-selector" ng-show="modal.tarefas">
+                    <ul>
+                    <li class="list-item list-item--with-icons list-item--divider" ng-repeat="tarefa in ctrl.tarefas">
+                        <input id="tarefa_{{$index}}" class="icon--primary" type="radio" ng-click="ctrl.select('tarefas', tarefa)" ng-model="ctrl.selected.tarefas" ng-value="tarefa" />
+                        <label for="tarefa_{{$index}}" class="text text--primary">{{tarefa.Nome}}</label>
+                    </li>
+                </ul>
+                </nav>
+            </div>
+            <!-- <img src="img/hang.png" class="icon--secondary"> -->
+        </li>
+    </ul>
+
+</main>
+
+
+<div class="app-footer-bar">
+    <button class="btn btn-persistent" type="button" ng-class="{'disabled': !ctrl.valid}" ng-click="ctrl.confirm()">Confirmar</button>
+</div>
+
+
+<div style="position:fixed; top:0; left:0; bottom:0; right: 0; background-color: rgba(0, 0, 0, 0.5); text-align: center" ng-show="ctrl.loading"> 
+    <span class="loader"><span class="loader-inner"></span></span>
+</div>

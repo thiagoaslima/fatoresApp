@@ -1,0 +1,16 @@
+<div class="login">
+    <h3>Faça o login</h3>
+    <form name="loginForm" ng-submit="loginForm.$valid && ctrl.submit()" novalidate>
+        <md-text-float label="Nome de usuário" type="text" name="username" ng-model="login.UserName" required></md-text-float>
+        <ng-messages class="alert-danger" for="loginForm.username.$error" ng-if="loginForm.username.$touched || loginForm.$submitted">
+            <ng-message when="required">Por favor, entre com o nome de usuário.</ng-message>
+        </ng-messages>
+
+        <md-text-float label="Senha" type="password" name="password" ng-model="login.Password" required></md-text-float>
+        <ng-messages class="alert-danger" for="loginForm.password.$error" ng-if="loginForm.username.$touched || loginForm.$submitted">
+            <ng-message when="required">Por favor, entre com a senha.</ng-message>
+        </ng-messages>
+
+        <md-button type="submit" class="md-primary">Enviar</md-button>
+    </form>
+</div>

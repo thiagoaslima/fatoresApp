@@ -2,7 +2,7 @@
 ;(function (angular) {
     "use strict";
     angular
-            .module('fatoresApp')
+            .module('app')
             .filter('isDefined', function () {
                 return function (value, msg) {
                     if (value === undefined) {

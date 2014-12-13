@@ -1,0 +1,650 @@
+/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*firefox android reset*/
+input, button {
+    background-image: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+html {
+    color: #757575;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between images, videos, audio and canvas and the bottom of
+ * their containers: h5bp.com/i/440
+ */
+
+audio,
+canvas,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Browse Happy prompt
+   ========================================================================== */
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+.ui-icon {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.ui-icon.icon-15 {
+    width: 2.25em !important;
+    height:2.25em;
+}
+
+.icon-area-left {
+    width: 4.5em;
+    padding-left: 1.25em;
+}
+
+.icon-area-right {
+    width: 5.5em;
+    padding-right: 1.25em;
+    text-align: right;
+}
+
+.icon-group .ui-icon {
+    margin-right: 0.5em;
+}
+
+.icon-group .ui-icon:last-of-type {
+    margin-right: 0;
+}
+
+.btn {
+    text-decoration: none;
+    text-transform: uppercase;
+    display: table-cell;
+    color: #757575;
+    background-color: transparent;
+    border: 1px solid #E0E0E0;
+    padding: 0;
+    height: 100%;
+}
+.btn-half {
+    width: 50%;
+}
+.btn-full {
+    width: 100%;
+}
+
+html, body {
+    height: 100%;
+}
+
+.app-view {
+    min-height: 100%;
+}
+
+.app-header-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    background-color: #009688;
+    display: table;
+    width: 100%;
+    height: 3.5em;
+    z-index: 9;
+}
+
+.app-header-bar .icon-area-left,
+.app-header-bar .page-title,
+.app-header-bar .icon-group {
+    vertical-align: middle;
+    display: table-cell;
+    position: relative;
+}
+
+.app-header-bar .page-title {
+    font-size: 1.25em;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+}
+
+.app-footer-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3em;
+    border-top: #E0E0E0;
+    background-color: white;
+    display: table;
+    width: 100%;
+    z-index: 9;
+}
+
+.app-footer-bar .btn {
+    text-align: center;
+    vertical-align: middle;
+}
+
+main {
+    padding-top: 3.5em;
+    padding-bottom: 3.5em;
+}
+
+.list-selector {
+    display: table;
+    width: 100%;
+    margin-top: 1em;
+}
+
+.equipe {
+    cursor: pointer;
+}
+
+.list-selector .icon-area-left,
+.list-selector .content,
+.list-selector .icon-area-right {
+    display: table-cell;
+}
+
+.list-selector-title {
+    font-size: 0.875em;
+}
+
+.list-selector.has-selected .list-selector-title {
+    display: none;
+}
+.list-selector.is-open .list-selector-title {
+    display: block;
+    color: #00B0FF;
+}
+
+.list-selector-options {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.list-selector-options li {
+    transition: all 0.21s;
+}
+
+.list-selector:not(.is-open) .chevron {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.list-selector-options li:not(.selected) {
+    margin: 0;
+    opacity: 0;
+    max-height: 0;
+}
+
+.list-selector.is-open .list-selector-options li {
+    font-size: 1em;
+    font-weight: normal;
+    margin: 2em 0;
+    opacity: 1;
+    max-height: 2em;
+}
+
+.list-selector-options li.selected {
+    font-size: 1.25em;
+    font-weight: normal;
+    margin: 1em 0;
+    color: #424242;
+}
+
+.list-selector.is-open .list-selector-options li.selected {
+    color: #00B0FF;
+}
+
+.col-2 {
+    width: 40%;
+    float: left;
+}
+
+.col-3 {
+    width: 60%;
+    float: right;
+}
+
+.equipe-col-1 {
+    background-color: #FAFAFA;
+    border-right: 1px solid #E0E0E0;
+    height: 100%;
+    position: fixed;
+}
+
+.box {
+    width: 90%;
+    padding: 0.3em 0.5em 0.4em;
+    display: table;
+    margin: 2em auto;
+    border: 1px solid #E0E0E0;
+    background-color: #FAFAFA;
+}
+
+.box-transparent {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.box .ui-icon {
+    display: table-cell;
+    vertical-align: middle;
+    width: 1.5em;
+    margin: 0.3em;
+}
+
+.box .content {
+    display: table-cell;
+    vertical-align: middle;
+    width: 80%;
+}
+
+.box-title {
+    font-size: 0.9375em;
+    margin: 0;
+}
+
+.box-note {
+    font-size: 0.75em;
+    margin: 0;
+}
+
+.box-modal {
+    background-color: #616161;
+    padding: 1em 1.5em;
+    width: 100%;
+    color: white;
+}
+
+.box-modal .icon-area-right {
+    position: absolute;
+    right: 0;
+    width: auto;
+    text-align: center;
+}
+
+.box-modal .form-group {
+    width: 100%;
+    margin: 1.5em 0;
+}
+
+.box-modal input[type=text] {
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid white;
+    padding: 0.75em 0 0.5em;
+}
+
+.box-modal label {
+    font-size: 0.8125em;
+    margin-bottom: 0.5em;
+}
+
+.box-modal .btn {
+    color: white;
+    border: 0;
+    font-size: 0.9375em;
+    float: right;
+}
+
+.box-section {
+    width: 100%;
+    display: table;
+    border-bottom: 1px solid #E0E0E0;
+    background-color: #FAFAFA;
+}
+
+.box-section .icon-area-left,
+.box-section .section-content {
+    display: table-cell;
+}
+
+.section-content p {
+    margin: 0.4em 0;
+}
+
+.trabalhador {
+    margin: 1em 0;
+}
+
+.content .title {
+    font-size: 1em;
+    margin: 0;
+}
+
+.content .note {
+    font-size: 0.8125em;
+    margin: 0;
+    color: #9E9E9E;
+}
+
+.atividade {
+    display: inline-block;
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+}
+
+.table {
+    display: table;
+}
+
+.table-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+header.dark-bg {
+    background-color: #616161;
+    width: 100%;
+}
+
+header.dark-bg .btn {
+    border-color: #818181;
+    height: 2.5em;
+    color: rgb(150, 150, 150);
+}
+
+header.dark-bg .btn.selected {
+    color: #FFFFFF;
+}
+
+.btn-half {
+    width: 50%;
+}
+
+.lista-atividades .list-selector:not(.is-open) {}
+
+.lista-atividades .list-selector:not(.is-open) .selected {
+    margin: 0.5em 0;
+}
+
+.modal {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: 0px solid lightgray;
+    box-shadow: 0 0 10px rgba(180, 180, 180, 0.7);
+    padding-top: 4em;
+    /* background-color: white; */
+    /* height: 100%; */
+    overflow: scroll;
+    top: 0;
+    bottom: 0;
+    padding-bottom: 5em;
+}
+
+.modal-mask {
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+    background-color: rgb(255, 255, 255);
+}
+
+#sidebar.is-open {
+    width: 80%;
+    background-color: rgb(230, 230, 230);
+    border-right: 1px solid rgb(210, 210, 210);
+    position: fixed;
+    top: 0; bottom: 0; left: 0;
+    z-index: 7;
+}
+
+.drop-shadow {
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.throbber:after {
+display: block;
+position: relative;
+width: 20px;
+height: 20px;
+-webkit-animation: rotate 0.6s linear infinite;
+-moz-animation: rotate 0.6s linear infinite;
+-ms-animation: rotate 0.6s linear infinite;
+-o-animation: rotate 0.6s linear infinite;
+animation: rotate 0.6s linear infinite;
+-webkit-border-radius: 100%;
+-moz-border-radius: 100%;
+/* border-radius: 100%; */
+border-top: 1px solid #545a6a;
+border-bottom: 1px solid #d4d4db;
+border-left: 1px solid #545a6a;
+border-right: 1px solid #d4d4db;
+content: '';
+opacity: .5;
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers: h5bp.com/u
+ */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers: h5bp.com/v
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print, (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important;
+        /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+    thead {
+        display: table-header-group;
+        /* h5bp.com/t */
+    }
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+    img {
+        max-width: 100% !important;
+    }
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}

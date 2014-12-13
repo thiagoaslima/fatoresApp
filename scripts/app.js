@@ -1,14 +1,28 @@
-;
-(function (angular) {
+(function (angular, undefined) {
     'use strict';
 
-    angular
-        .module("fatoresApp", [
-            'ngMessages',
-            'ngLocale',
-            'ngResource',
-            'ngSanitize',
-            'ui.router'
-        ]);
+    angular.module('app', [
+        /*
+         * Order is not important. Angular makes a
+         * pass to register all of the modules listed
+         * and then when app.dashboard tries to use app.data,
+         * it's components are available.
+         */
 
-}(window.angular));
+        /*
+         * Everybody has access to these.
+         * We could place these under every feature area,
+         * but this is easier to maintain.
+         */
+        'app.core',
+        //'app.data', // needs core
+        //'app.widgets', // needs core
+
+        /*
+         * Feature areas
+         */
+        'app.auth',
+        'app.layout'
+        
+    ]);
+})(window.angular);

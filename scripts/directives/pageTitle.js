@@ -4,23 +4,37 @@
     'use strict';
 
     angular
-            .module('fatoresApp')
-            .directive('pageTitle', [
-                function () {
-                    return {
-                        link: function (scope) {
+        .module('app.directives')
+        .directive('pageTitle', ['$compile', pageTitle]);
 
-                            var listener = function (event, toState) {
-                                scope.page = scope.page || {};
-                                scope.page.title = (toState.data && toState.data.pageTitle)
-                                        ? toState.data.pageTitle
-                                        : 'Default title';
-                            };
+    function pageTitle($compile) {
+        return {
+            restrict: 'AE',
+            replace: true,
+            compile: compiler,
+            controller: controller
+        };
+    }
 
-                            scope.$on('$stateChangeSuccess', listener);
-                        }
-                    };
-                }
-            ]);
+    function compiler(element, attrs) {
+        console.log(element, arguments);
 
+        var $el = (attrs.tag) ? angular.element('<' + attrs.tag + '>') : angular.element('<h2>');
+        $el.html('{{page.title}}');
+
+        element.append($el);
+        console.log(element);
+    }
+    
+    controller.$inject = ['$scope', 'appInfo'];
+    function controller(scope, appInfo) {
+        var listener = function (event, toState) {
+            scope.page = scope.page || {};
+            scope.page.title = (toState && toState.data && toState.data.pageTitle)
+                ? toState.data.pageTitle
+                : appInfo.appTitle;
+        };
+        listener();
+        scope.$on('$stateChangeSuccess', listener);
+    }
 }(window.angular));

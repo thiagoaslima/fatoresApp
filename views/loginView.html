@@ -1,0 +1,17 @@
+<div class="login">
+    <h3>Faça o login</h3>
+    <form name="loginForm" ng-submit="loginForm.$valid && ctrl.submit()" novalidate>
+        <input type="text" name="username" placeholder="Nome do usuário" ng-model="login.UserName" ng-model-options="{ debounce : { 'default' : 200, 'blur': 10  } }" required />
+
+        <ng-messages class="alert-danger" for="loginForm.username.$error" ng-if="loginForm.username.$touched || loginForm.$submitted">
+            <ng-message when="required">Por favor, entre com o nome de usuário.</ng-message>
+        </ng-messages>
+
+        <input type="password" name="password" placeholder="Senha" ng-model="login.Password" required />
+        <ng-messages class="alert-danger" for="loginForm.password.$error" ng-if="loginForm.username.$touched || loginForm.$submitted">
+            <ng-message when="required">Por favor, entre com a senha.</ng-message>
+        </ng-messages>
+
+        <input type="submit" value="Entrar" /><span ng-class="{'loading': !!loading.status}"></span>
+    </form>
+</div>
