@@ -28,7 +28,7 @@
                                 item: 'token',
                                 username: '',
                                 password: ''
-                            }, 0.01).finally(function () {
+                            }, 0.001).finally(function () {
                                 defer.resolve();
                             });
                             return defer.promise;
@@ -43,8 +43,8 @@
                     pageTitle: 'Configuração'
                 },
                 resolve: {
-                    'loadData': ['Entidades', function (Entidades) {
-                            return Entidades.init();
+                    'dados': ['Config', function (Config) {
+                            return Config.get();
                         }]
                 }
             })

@@ -7,7 +7,7 @@
         .factory('Entidades', [
             '$q',
             'dataservice',
-            'storage',
+            'localStorageService',
             'hashByIdFilter',
             Entidades
         ]);
@@ -67,15 +67,23 @@
                 _lista.obra,
                 _lista.tarefa
             ]).then(function (dados) {
-                console.log(dados);
                 storage.set('database', storageEntidades);
+                _lista = storageEntidades.dados;
                 defer.resolve();
+            }).catch(function (error) {
+                defer.reject(error);
             });
 
             return defer.promise;
         }
 
-        function get() {
+        function get(entidade, array) {
+            if (!array || array.length === 0) {
+                return _lista[entidade];
+            }
+            return array.map(function(id) {
+                return _lista[entidade][id];
+            });
         }
 
         function extendLocal(obj, entidade) {

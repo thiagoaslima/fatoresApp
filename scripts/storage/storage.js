@@ -3,9 +3,9 @@
     'use strict';
 
     angular
-        .module('app.storage')
-        .factory('storage', ['nomeEntidades', 'abbr', 'extenso', 'ordem', 'localStorageService', storage]);
-    
+            .module('app.storage')
+            .factory('storage', ['nomeEntidades', 'abbr', 'extenso', 'ordem', 'localStorageService', storage]);
+
     function storage(nomes, abbr, extenso, ordem, localstorage) {
         var _cache = {};
 
@@ -13,7 +13,7 @@
             get: get,
             set: set
         };
-        
+
         function get(name) {
             if (_cache[name]) {
                 return _cache[name];
@@ -23,71 +23,54 @@
             _cache[name] = obj;
             return obj;
         }
-        
+
         function set(name, data) {
             _cache[name] = data;
             var obj = manager(name, angular.copy(data), compact);
             localstorage.set(compact(name), obj);
             return obj;
         }
-        
+
         function manager(name, el, fn) {
             if (el === null) {
                 return el;
             }
-
-            Object.keys(el).forEach(function(key){
-               var fnKey = fn(key) || key; 
-               el[fnKey] = fn(el[key], fnKey);
-               delete(el[key]);
+            
+            var obj = {};
+            Object.keys(el).forEach(function (key) {
+                obj[fn(key)] = fn(el[key], name + '.' + key);
+                delete(el[key]);
             });
-            return el;
+            console.log(obj);
+            
+            return obj;
         }
-        
+
         function compact(el, name) {
             if (angular.isString(el)) {
-                return abbr[el];
+                return abbr[el] || el;
             }
             
-            if (angular.isArray(el)) {
-                if (nomes.indexOf(name) > -1) {
-                    return ordem[name].map(function(key) {
-                        return el[key]; 
-                    });
-                }
-                // else
-                return el;
-            }
-            
+            if (angular.isArray)
+
             if (angular.isObject(el)) {
-                return manager(el, compact);
+                return manager(name, el, compact);
             }
         }
+        
         function descompact(el, name) {
             if (el === null) {
                 return el;
             }
-            
+
             if (angular.isString(el)) {
-                return extenso[el];
+                return extenso[el] || el;
             }
-            
-            if (angular.isArray(el)) {
-                if (nomes.indexOf(extenso[name]) > -1) {
-                    var obj = {};
-                    ordem[name].forEach(function(key, idx) {
-                        obj[key] = el[idx];
-                    });
-                    return obj;
-                }
-                //else
-                return el;
-            }
-            
+
             if (angular.isObject(el)) {
-                return manager(el, descompact);
+                return manager(name, el, descompact);
             }
         }
     }
-    
+
 })(window.angular);
