@@ -3,6 +3,6 @@
     'use strict';
 
     angular
-        .module('logger', ['toaster']);
-    
+        .module('app.filters', []);
+
 })(window.angular);

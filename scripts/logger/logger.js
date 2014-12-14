@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('app.logger')
+        .module('logger')
         .factory('logger', logger);
 
-    logger.$inject = ['$log', 'toaster'];
+    logger.$inject = ['$log', 'toaster', '$rootScope'];
 
-    function logger($log, toaster) {
+    function logger($log, toaster, $rootScope) {
         var service = {
             showToasts: true,
             
@@ -15,41 +15,49 @@
             info    : info,
             success : success,
             warning : warning,
+            warn    : warning,
 
             // straight to console; bypass toastr
             log     : $log.log
         };
 
+        $rootScope.$on('$stateChangeError', function(evt, to, toParams, from, fromParams, error) {
+            service.error({
+                title: 'Logger.js: Routing',
+                msg: error
+            });
+        });
+
         return service;
         /////////////////////
 
-        function error(message, data, title) {
-            data = checkData(data);
-            toaster.pop('error', title, message);
-            $log.error('Error: ' + message, data );
+        function error(options) {
+            options.data = checkData(options.data);
+            toaster.pop('error', options.title, options.msg.toString() || options.msg);
+            $log.error(options.data, 'Error: ' + options.msg);
         }
 
-        function info(message, data, title) {
-            data = checkData(data);
-            toaster.pop('note', title, message);
-            $log.info('Info: ' + message, data);
+        function info(options) {
+            options.data = checkData(options.data);
+            toaster.pop('note', options.title, options.msg.toString() || options.msg);
+            $log.info(options.data, 'Info: ' + options.msg);
         }
 
-        function success(message, data, title) {
-            data = checkData(data);
-            toaster.pop('success', title, message);
-            $log.info('Success: ' + message, data);
+        function success(options) {
+            options.data = checkData(options.data);
+            toaster.pop('success', options.title, options.msg.toString() || options.msg);
+            $log.info(options.data, 'Success: ' + options.msg);
         }
 
-        function warning(message, data, title) {
-            data = checkData(data);
-            toaster.pop('warn', title, message);
-            $log.warn('Warning: ' + message, data);
+        function warning(options) {
+            options.data = checkData(options.data);
+            toaster.pop('warning', options.title, options.msg.toString() || options.msg);
+            $log.warn(options.data, 'Warning: ' + options.msg);
         }
         
         function checkData(data) {
             if (!data) {
-                return new Date().toLocaleDateString();
+                return new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString();
             }
         }
     }

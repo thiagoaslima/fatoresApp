@@ -16,13 +16,13 @@
          * Our reusable cross app code modules
          */
         'encrypt',
+        'logger',
 
         /*
          * 3rd Party modules
          */
         'toaster',
         'ui.router',
-        'LocalStorageModule',
-        'app.directives'
+        'LocalStorageModule'
     ]);
 })(window.angular);

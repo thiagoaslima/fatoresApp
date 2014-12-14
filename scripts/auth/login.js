@@ -4,37 +4,44 @@
 
     angular
         .module('app.auth')
-        .controller('Login', ['$scope', 'common', 'authService', Login]);
+        .controller('Login', ['$scope', '$state', 'authservice', 'logger', Login]);
 
-    function Login($scope, common, authService) {
+    function Login($scope, $state, authservice, logger) {
         var vm = this;
         vm.submit = submit;
-
         resetForm();
-
         return vm;
 
         function submit() {
             // confere a validade dos dados
-            authService.login().then(
-                // caso esteja ok, vai para configuração
-                    function success() {
-                        common.routes.to('configuracao');
-                    },
-                    // caso não, zera o formulário e avisa que os dados estão incorretos
-                        function fail() {
-                            resetForm();
-                        }
-                    );
-                }
+            return authservice.login(vm.login)
+                .then(confirmLogin)
+                .catch(loginError);
 
-            function resetForm() {
-                vm.login = vm.login || {};
-                vm.login.UserName = '';
-                vm.login.Password = '';
+            //////////////////////
+            // caso esteja ok, vai para configuração
+            function confirmLogin() {
+                logger.success({
+                    title: 'login.js: login',
+                    msg: 'Login realizado com sucesso!'
+                });
+                $state.go('configuracao');
             }
 
-
+            // caso não, zera o formulário e avisa que os dados estão incorretos
+            function loginError(err) {
+                resetForm();
+                logger.warn({
+                    title: 'login.js: login',
+                    msg: err
+                });
+            }
         }
 
+        function resetForm() {
+            vm.login = vm.login || {};
+            vm.login.UserName = '';
+            vm.login.Password = '';
+        }
+    }
 })(window.angular);

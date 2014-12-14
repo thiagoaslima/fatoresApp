@@ -15,15 +15,16 @@
          * but this is easier to maintain.
          */
         'app.core',
-        //'app.data', // needs core
-        //'app.widgets', // needs core
+        'app.directives',
+        'app.models',
+        'app.filters',
+        'app.storage',
 
         /*
          * Feature areas
          */
         'app.auth',
-        'app.layout',
-        'app.logger'
+        'app.layout'
         
     ]);
 })(window.angular);
