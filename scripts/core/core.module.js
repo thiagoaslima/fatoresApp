@@ -10,7 +10,7 @@
         'ngLocale',
         'ngResource',
         'ngSanitize',
-        'ngMaterial',
+//        'ngMaterial',
 
         /*
          * Our reusable cross app code modules
@@ -23,6 +23,7 @@
          */
         'toaster',
         'ui.router',
+        'ui.bootstrap',
         'LocalStorageModule'
     ]);
 })(window.angular);
