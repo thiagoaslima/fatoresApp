@@ -17,38 +17,42 @@
     -webkit-align-items:center;
         -ms-flex-align:center;
             align-items:center;
-    background-color: teal;
-    color: white;
-    box-shadow: 0 0 2px 0 rgba(0,0,0,0.7);
+    background-color: rgb(0,150,136);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
 .toolbar-button {
-    min-width: 2em;
+    /* min-width: 2em; */
     height: 2em;
     border: 0;
-    background-image: none;
-    background-color: rgba(255, 255, 255, 0.7);
-    display: table;
+    /*background-image: none;*/
+    /*background-color: rgba(255, 255, 255, 0.7);*/
+    /* display: flex; */
     text-align: center;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+/*    padding-left: 0.5em;
+    padding-right: 0.5em;*/
 }
 .toolbar-button > * {
-    display: table-cell;
+/*    display: table-cell;
     vertical-align: middle;
-    margin: 0 0.5rem;
+    margin: 0 0.5rem;*/
+    margin: auto;
 }
 .toolbar-button-left {
-    margin:0 2rem 0 1rem;
+/*    margin:0 2rem 0 1rem;*/
 }
 .toolbar-button-right {
-    margin:0 1rem 0 2rem;
+    /* margin:0 1rem 0 2rem; */
 }
 
 .toolbar-title {
-    font-size: 1.2em;
+    font-size: 1em;
     margin: 0;
-    -webkit-flex: 1;
+/*    -webkit-flex: 1;
         -ms-flex: 1;
-            flex: 1;
+            flex: 1;*/
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 0.5px;
 }

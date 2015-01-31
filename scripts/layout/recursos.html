@@ -1,0 +1,110 @@
+<div id="content">
+
+  <!--Atividades-->
+  <div class="card" ng-hide="modoRecursos === 'membros'" ng-repeat="atividade in recursos.Atividades">
+    <h2 class="card-header section-content" style="color: {{atividade.Cor}}" ng-click="recursos.change($event, atividade.Membros, 'atividades')">{{atividade.Nome}}</h2>
+
+    <div class="section">
+      <div class="section-icons" ng-click="recursos.change($event, atividade.Membros, 'atividades')">
+	<div class="section-icon" style="background-color: {{atividade.Cor}}">
+	  <svg>
+	  <use xlink:href="#atividade" />
+	  </svg>
+	</div>
+      </div>
+
+      <div class="section-content section-column">
+	<div class="section" ng-repeat="membro in atividade.Membros">
+	  <div class="section-content" ng-click="recursos.change($event, [membro], 'atividades')">
+	    <h3 class="section-content-header">{{membro.Nome}}</h3>
+	    <h4 class="section-content-description">{{membro.printRegistros()}}</h4>
+	  </div>
+
+	  <div class="section-icons" ng-if="membro.Recurso" ng-click="recursos.change($event, [membro], 'comentarios')">
+	    <svg class="icon" ng-if="membro.Recurso.Comentarios.length">
+	    <use xlink:href="#com-comentarios" />
+	    </svg>
+	    
+	    <svg class="icon" ng-if="!membro.Recurso.Comentarios.length">
+	    <use xlink:href="#sem-comentarios" />
+	    </svg>
+	  </div>
+	</div>
+
+      </div>
+    </div>
+  </div>
+  
+  <!--Membros-->
+  <div class="card" ng-show="modoRecursos === 'membros'" ng-repeat="membro in recursos.Equipe">
+
+    <div class="section">
+      <div class="section-icons" >
+	<div class="section-icon" style="background-color: {{membro.Atividade.Cor}}">
+	  <svg>
+	  <use xlink:href="#atividade" />
+	  </svg>
+	</div>
+      </div>
+
+      <div class="section-content">
+	<div class="section">
+	  <div class="section-content" ng-click="recursos.change($event, [membro], 'atividades')">
+	    <h3 class="section-content-header">{{membro.Nome}}</h3>
+	    <h4 class="section-content-description">{{membro.Atividade.Nome}} • {{membro.Atividade.Funcao}}</h4>
+	  </div>
+
+	  <div class="section-icons" ng-if="membro.Recurso" ng-click="recursos.change($event, [membro], 'comentarios')">
+	    <svg class="icon" ng-if="membro.Recurso.Comentarios.length">
+	    <use xlink:href="#com-comentarios" />
+	    </svg>
+	    
+	    <svg class="icon" ng-if="!membro.Recurso.Comentarios.length">
+	    <use xlink:href="#sem-comentarios" />
+	    </svg>
+	  </div>
+	</div>
+
+      </div>
+    </div>
+  </div>
+
+  <!--Atividades-->
+<!--  <div class="lista-item" ng-repeat="atividade in recursos.Atividades">
+    <h3 class="lista-title" style="color:{{::atividade.Cor}}" 
+	ng-click="recursos.change($event, atividade.Membros, 'atividades')">{{::atividade.Nome}}</h3>
+
+    <div class="lista-tiles">
+      <div class="tile-left">A</div>
+      <div class="tile-content">
+	<div class="lista-item-text" ng-repeat="membro in atividade.Membros">
+	  <div class="lista-item-selecoes" ng-click="recursos.change($event, [membro], 'atividades')">
+	    <p class="lista-item-title">{{::membro.Nome}}</p>
+	    <p class="lista-item-subtitle">{{::membro.Funcao.Nome}}</p>
+
+	    <div class='tile-right' ng-click="recursos.change($event, [membro], 'comentarios')" ng-if="membro.Recurso">
+	      <svg class="icon" ng-if="membro.Comentarios.length">
+	      <use xlink:href="#com-comentarios" />
+	      </svg>
+
+	      <svg class="icon" ng-if="!membro.Comentarios.length">
+	      <use xlink:href="#comentarios" />
+	      </svg>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>-->
+
+</div>
+
+<footer id='footer'>
+  <button type="button"
+	  class="btn btn-cancel hidden"></button>
+
+  <button class="btn btn-ok" 
+	  ng-click="recursos.openModal()"
+	  ng-disabled="buttons.ok.disabled" 
+	  type="button">Finalizar</button>
+</footer>

@@ -7,11 +7,7 @@
         .controller('Toolbar', ['$scope', '$state', Toolbar]);
     
     function Toolbar($scope, $state) {
-        var vm = this;
-        
-//        vm.page = {
-//            title: $state.current.data.title
-//        };
+        var vm = this; 
         
         return vm;
     }

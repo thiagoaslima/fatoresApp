@@ -15,16 +15,19 @@
          * but this is easier to maintain.
          */
         'app.core',
+        'app.libs',
         'app.directives',
         'app.models',
+	'app.services',
         'app.filters',
         'app.storage',
-
-        /*
-         * Feature areas
-         */
+        'app.levantamentos',
+//
+//        /*
+//         * Feature areas
+//         */
         'app.auth',
         'app.layout'
-        
     ]);
+
 })(window.angular);

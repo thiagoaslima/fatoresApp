@@ -1,0 +1,55 @@
+@charset 'utf-8';
+
+#footer {
+    display: flexbox;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-align-items:center;
+        -ms-flex-align:center;
+            align-items:center;
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.btn-flat {
+    border: none;
+    background-color: transparent;
+    display: inline-block;
+    height: 3rem;
+    /* margin-bottom: 15px; */
+    padding: 0 2rem;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background-clip: padding-box;
+    line-height: 3rem;
+    text-transform: uppercase;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+
+.btn-ok {
+    color: teal;
+}
+.btn-cancel {
+    color: rgb(51, 51, 51);
+}
+
+.btn-flat[disabled] {
+    color: #b3b3b3;
+    cursor: default;
+    font-size: 0.85em;
+}

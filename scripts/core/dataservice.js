@@ -11,8 +11,8 @@
         return {
             requestToken: requestToken,
             // Low level API
-            get: get
-//            post: post
+            get: get,
+            post: post
         };
 
         function requestToken(username, password) {
@@ -44,26 +44,48 @@
             var request = _get(_item, (_options || {}));
 
             // automatiza tempo para cancelar a requisição
-            // padrão de 45 segundos
-            var cancel = $timeout(function () {
-                if (request && angular.isFunction(request.abort)) {
-                    request.abort();
-                }
-            }, _timeout * 1000 || 45 * 1000);
+            // padrão de 25 segundos
+            var interrupt = $timeout(function () {
+                logger.error(
+                    'request for ' + _item + ' aborted',
+                    null,
+                    'dataservice.js: timeout'
+                    );
+                request.interrupt();
+            }, _timeout * 1000 || 25 * 1000);
+
+            request.finally(function () {
+                $timeout.cancel(interrupt);
+                interrupt = angular.noop;
+                _item = item = null;
+                _options = options = null;
+                request = timeout = _timeout = null;
+            });
 
             return request;
         }
 
+
+        function post(entidade, obj) {
+            return $http({
+                method: 'post',
+                url: dbUrl + entidade,
+                data: obj,
+                params: {}
+            });
+        }
+        
 
         function _get(item, options) {
             // seleciona qual o complemento de dbUrl
             // e identifica a solicitação do sistema
 
             if (typeof item !== 'string' && typeof options !== 'object') {
-                logger.error({
-                    title: 'dataservice.js: xhr request',
-                    msg: 'Argumentos no formato errado'
-                });
+                logger.error(
+                    'Argumentos no formato errado',
+                    null,
+                    'dataservice.js: xhr request'
+                    );
                 throw new Error('argumento no formato errado');
                 return false;
             }
@@ -101,7 +123,7 @@
             // the $http service uses a deferred value for the timeout, then
             // all we have to do here is resolve the value and AngularJS will
             // abort the underlying AJAX request.
-            promise.abort = function () {
+            promise.interrupt = function () {
                 deferredAbort.resolve();
             };
 
@@ -111,12 +133,13 @@
             // that the requests has finished.
             promise.finally(
                 function () {
-                    promise.abort = angular.noop;
+                    promise.interrupt = angular.noop;
                     deferredAbort = request = promise = null;
                 }
             );
 
             return(promise);
+//            return request;
         }
     }
 

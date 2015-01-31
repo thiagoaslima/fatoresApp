@@ -4,9 +4,11 @@
 
     angular
         .module('app.auth')
-        .controller('Login', ['$scope', '$state', 'authservice', 'logger', Login]);
+        .controller('Login',
+            ['$scope', '$state', 'authservice', 'logger', '$http', Login]);
 
-    function Login($scope, $state, authservice, logger) {
+    function Login($scope, $state, authservice, logger, $http) {
+       
         var vm = this;
         vm.submit = submit;
         resetForm();
@@ -21,20 +23,22 @@
             //////////////////////
             // caso esteja ok, vai para configuração
             function confirmLogin() {
-                logger.success({
-                    title: 'login.js: login',
-                    msg: 'Login realizado com sucesso!'
-                });
+                logger.success(
+                    'Login realizado com sucesso!',
+                    null,
+                    'login.js: login'
+                    );
                 $state.go('configuracao');
             }
 
             // caso não, zera o formulário e avisa que os dados estão incorretos
             function loginError(err) {
                 resetForm();
-                logger.warn({
-                    title: 'login.js: login',
-                    msg: err
-                });
+                logger.warn(
+                    err,
+                    null,
+                    'login.js: login'
+                    );
             }
         }
 

@@ -5,7 +5,7 @@
     angular
         .module('app.core')
         .factory('common', ['$q', '$state', 'logger', common]);
-    
+
     function common($q, $state, logger) {
         var routes = {
             to: routesTo
@@ -15,16 +15,17 @@
             'routes': routes,
             'promise': $q
         };
-        
+
         return service;
-        
+
         function routesTo(state) {
-            logger.info({
-                title: 'common.js: Route', 
-                msg: 'Go to ' + state 
-            });
+            logger.info(
+                'Going to ' + state,
+                null,
+                'common.js: Route'
+                );
             $state.go(state);
         }
     }
-    
+
 })(window.angular);

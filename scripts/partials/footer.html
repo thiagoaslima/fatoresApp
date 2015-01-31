@@ -1,0 +1,13 @@
+<footer id='footer'>
+    <button class="btn-flat btn-cancel" 
+            ng-if="footer.buttons.cancel" 
+            ui-sref="{{::footer.buttons.cancel.toState}}" 
+            ng-disabled="footer.buttons.cancel.disabled" 
+            type="button">{{::footer.buttons.cancel.title}}</button>
+
+    <button class="btn-flat btn-ok" 
+            ng-if="footer.buttons.ok" 
+            ui-sref="{{::footer.buttons.ok.toState}}" 
+            ng-disabled="footer.buttons.ok.disabled" 
+            type="button">{{::footer.buttons.ok.title}}</button>
+</footer>

@@ -1,0 +1,84 @@
+<div id="content">
+
+  <div class="card">
+    <h2 class="card-header section-content">Novo comentário</h2>
+
+    <form name='comentarioForm' class="section" novalidate>
+      <textarea rows="3" class="section-content" ng-model="comentarios.texto" required></textarea>
+    </form>
+  </div>
+
+  <!--Equipe-->
+  <div class="card">
+    <h2 class="card-header section-content">Equipe</h2>
+
+    <div class="section">
+
+      <div class="section-content">
+	<div class="section section-column">
+	  <div class="section section-content" style="width: 100%" ng-repeat="membro in comentarios.Equipe" ng-click="comentarios.toggle($event, membro)">
+	    <div class="section-content">
+	      <input type="checkbox" id="membro_{{::$index}}" 
+		     name="membros"
+		     ng-checked="membro.isSelected">
+	      <label for="membro_{{::$index}}">
+		<span></span>
+		<span class="check"></span>
+		<span class="box"></span>
+		<label style='display:block' class="section-content-header">
+		  {{::membro.Nome}}
+		</label>
+		<label style='display:block' class="section-content-description">
+		  {{::membro.Atividade.Nome}}
+		</label>
+	      </label>
+	    </div>
+
+	    <!--	    <div class="section-icons" ng-click='comentarios.showDiv($index)'>
+			  <svg class="icon" ng-hide='comentarios.div[$index]'>
+			  <use xlink:href="#unfold" />
+			  </svg>
+			  
+			  <svg class="icon" ng-show='comentarios.div[$index]'>
+			  <use xlink:href="#fold" />
+			  </svg>
+			</div>-->
+
+	    <!--	    <div id='comentario_collapse_{{::$index}}' class='section-content' style='width:100%' data-list-collapse>
+			<div class="box section-column" data-collapse-item>
+			  <div class="box-comentarios section" ng-repeat="comentario in membro.Recurso.Comentarios">
+			    <div class="section-content">
+			      <p class="section-content-subheader">{{comentario.value}}</p>
+			      <p class="section-content-description">{{comentario.printMembros()}}</p>
+			    </div>
+			    <div class="section-icons">
+			      <svg class="icon">
+			      <use xlink:href="#edit" />
+			      </svg>
+			    </div>
+			  </div>
+			</div>-->
+
+	  </div>
+	</div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<footer id='footer'>
+  <button class="btn btn-cancel" 
+          ui-sref="recursos"
+          ng-click="comentarios.reset()"
+          type="button">Cancelar</button>
+
+  <button class="btn btn-ok" 
+	  ng-click="comentarios.gravar()"
+	  ui-sref="recursos"
+	  ng-disabled="!comentarios.selected.Equipe.length || comentarioForm.$invalid" 
+	  type="button">Confirmar</button>
+</footer>

@@ -1,0 +1,108 @@
+@charset 'utf-8';
+
+/* basic css */
+input[type=checkbox], input[type=radio] { 
+    display:none; 
+}
+label, p { 
+    /* padding-left: 2em; */ 
+}
+
+input[type=radio] + label .box {
+    /* border-radius: 1em; */
+    /* border-style: double; */
+    /* border-width: 4px; */
+}
+
+input[type=checkbox] + label,
+input[type=radio] + label {
+    position: relative;
+    padding-left: 1.5em;
+}
+
+/* checkbox css */
+label { 
+    cursor:pointer; 
+}
+label span { 
+    display: block; 
+    position: absolute;  
+    left:0; 
+    -webkit-transition-duration: 0.2s; 
+    transition-duration: 0.2s
+    /* z-index: 0; */
+}
+label .circle {
+    background:#FFF;
+    left:-2em;
+    top:-2em;
+    height:5.5em;
+    width:5.5em;
+    z-index: 0;
+    border-radius:50%; 
+    -moz-border-radius:50%; 
+    -webkit-border-radius:50%;
+}
+label .box {
+    border: 1px solid #B6B6B6;
+    height: 0.9em; 
+    width: 0.92em;
+    z-index: 0;
+    -webkit-transition-delay:0.2s; 
+    transition-delay:0.2s;
+    margin-top: 0.2em;
+}
+label .check {
+    top: 0;
+    left: 0.35em;
+    width: 0.5em;
+    height: 1em;
+    border:2px solid #0f9d58;  
+    border-top: none;
+    border-left: none;
+    opacity:0; 
+    z-index: 0;
+    -webkit-transform:rotate(180deg); 
+    -ms-transform:rotate(180deg); 
+        transform:rotate(180deg);
+    -webkit-transition-delay: 0.2s; 
+    transition-delay: 0.2s
+    /* position: relative; */
+}
+
+/* handling click events */
+
+/* when checkbox is checked */
+label .circle {
+    -webkit-animation: growCircle 0.3s ease;
+    animation        : growCircle 0.3s ease;
+}
+input[type=checkbox]:checked ~ label .box,
+input[type=checkbox][checked=checked] ~ label .box,
+input[type=radio]:checked ~ label .box,
+input[type=radio][checked=checked] ~ label .box { 
+    opacity:0;
+    -webkit-transform   :scale(0) rotate(-180deg);
+    -ms-transform 				:scale(0) rotate(-180deg);
+        transform 				:scale(0) rotate(-180deg);
+}
+input[type=checkbox]:checked ~ label .check,
+input[type=checkbox][checked=checked] ~ label .check,
+input[type=radio]:checked ~ label .check,
+input[type=radio][checked=checked] ~ label .check {
+    opacity:1; 
+    -webkit-transform   :scale(1) rotate(45deg);
+    -ms-transform           :scale(1) rotate(45deg);
+        transform           :scale(1) rotate(45deg);
+}
+
+/* bubble animation */
+
+@-webkit-keyframes growCircle {
+    0%, 100%   { -webkit-transform:scale(0); }
+    70%        { background:#DDD; -webkit-transform:scale(1.25); }
+}
+@keyframes growCircle {
+    0%, 100%   { -webkit-transform:scale(0); transform:scale(0); }
+    70%        { background:#DDD; -webkit-transform:scale(1.25); transform:scale(1.25); }
+}

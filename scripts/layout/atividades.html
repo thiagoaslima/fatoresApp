@@ -1,0 +1,125 @@
+<div id="content">
+
+  <!--Atividades-->
+  <div class="card">
+    <h2 class="card-header section-content">Atividades</h2>
+
+    <div class="section" data-list-collapse>
+      <div class="section-icons">
+	<div class="section-icon">
+	  <svg>
+	  <use xlink:href="#empresa" />
+	  </svg>
+	</div>
+      </div>
+
+      <div class="section-content">
+	<div class="section">
+	  <div class="section-content">
+	    <h4 class="section-content-subheader" ng-show="!atividades.selected.Atividade.length">Selecione uma opção</h4>
+	    <h3 class="section-content-header" ng-click="atividades.rebuildLevel(selected)" 
+		ng-show="atividades.selected.Atividade.length" 
+		ng-repeat="selected in atividades.selected.Atividade">
+	      {{::selected.Nome}}
+	    </h3>
+	  </div>
+	</div>
+
+	<div class="box box-options section" data-list-collapse-item>
+	  <div class="box-content section-content animate-options" ng-repeat="atividade in atividades.selecao" ng-click="atividades.select($event, atividade)">
+	    <input type="checkbox" id="atividade_{{::$index}}" 
+		   name="atividades"
+		   ng-checked="vm.isSelected(atividade, vm.selected.Empresa)">
+	    <label class="section-content-subheader" for="atividade_{{::$index}}">
+	      <span></span>
+	      <span class="check"></span>
+	      <span class="box"></span>
+	      <strong class="ativ_circle" style="display: inline-block; height: 1em; width: 1em; border-radius: 50%; background-color: {{atividade.Cor}}"></strong> 
+	      {{::atividade.Nome}}
+	    </label>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--Equipe-->
+  <div class="card">
+    <h2 class="card-header section-content">Equipe</h2>
+
+    <div class="section">
+
+      <div class="section-content">
+	<div class="section section-column">
+	  <div class="section-content" ng-repeat="membro in atividades.Equipe" ng-click="atividades.toggle($event, membro)">
+	    <div>
+	      <input type="checkbox" id="membro_{{::$index}}" 
+		     name="membros"
+		     ng-checked="membro.isSelected">
+	      <label for="membro_{{::$index}}">
+		<span></span>
+		<span class="check"></span>
+		<span class="box"></span>
+		<label style='display:block' for="membro_{{::$index}}" class="section-content-header">
+		  {{::membro.Nome}}
+		</label>
+		<label style='display:block' for="membro_{{::$index}}" class="section-content-description">
+		  {{::membro.Funcao.Nome}} • {{::membro.Atividade.Nome}}
+		</label>
+	      </label>
+	    </div>
+
+	  </div>
+	</div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+  <!--  <div class="lista-item">
+      <h3 class="lista-title">Equipe</h3>
+  
+      <div class="lista-tiles">
+	<div class="tile-left">A</div>
+	<div class="tile-content">
+	  <div class="lista-item-text">
+	    <div class="lista-item-selecoes">
+	      <div class="lista-options-group" ng-repeat="membro in atividades.Equipe">
+		<input type="checkbox" id="membro_{{::$index}}" 
+		       name="membros"
+		       ng-checked="membro.isSelected" 
+		       ng-click="atividades.toggle(membro)">
+		<label for="membro_{{::$index}}">
+		  <span></span>
+		  <span class="check"></span>
+		  <span class="box"></span>
+		  {{::membro.Nome}}
+		  <span>{{membro.Atividade.Nome}}</span>
+		</label>
+  
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>-->
+
+</div>
+
+
+<footer id='footer'>
+  <button class="btn btn-cancel" 
+          ui-sref="recursos"
+          ng-click="atividades.reset()"
+          type="button">Cancelar</button>
+
+  <button class="btn btn-ok" 
+          ng-click="atividades.registrar()"
+          ng-disabled="!atividades.selected.Equipe.length || (!atividades.selected.Atividade.length && atividades.selecao.length)" 
+          ui-sref="recursos"
+          type="button">Confirmar</button>
+</footer>

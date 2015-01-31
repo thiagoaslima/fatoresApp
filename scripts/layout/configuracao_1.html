@@ -1,0 +1,225 @@
+<div id="content">
+  <!--Empresas-->
+  <div class="lista-item">
+    <h3 class="lista-title">Empresas</h3>
+
+    <div class="lista-tiles">
+      <div class="tile-left">
+        
+      </div>
+      <div class="tile-content">
+        <div class="lista-item-options" list-collapse scroll="content">
+          <div class="lista-item-selecoes">
+            <p class="lista-item-selecionado muted" ng-show="!vm.selected.Empresa">Selecione uma das opções</p>
+            <p class="lista-item-selecionado" ng-show="vm.selected.Empresa">{{vm.selected.Empresa.RazaoSocial}}</p>
+            <div class="lista-options" list-collapse-item>
+              <div class="lista-options-group" ng-repeat="empresa in vm.Empresas" ng-click="vm.select('Empresa', empresa)">
+                <input type="checkbox" id="empresa_{{::$index}}" 
+                       name="empresas"
+                       ng-checked="vm.isSelected(empresa, vm.selected.Empresa)">
+                <label for="empresa_{{::$index}}">
+                  <span></span>
+                  <span class="check"></span>
+                  <span class="box"></span>
+                  {{::empresa.RazaoSocial}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="lista-item">
+    <h3 class="lista-title">Obras</h3>
+
+    <div class="lista-tiles">
+      <div class="tile-left"></div>
+      <div class="tile-content">
+          <h3 class="lista-item-title">Empreendimento</h3>
+
+        <!--Empreendimentos-->
+        <div class="lista-item-options" list-collapse scroll="content">
+          <div class="lista-item-selecoes">
+            <p class="lista-item-selecionado muted" ng-show="!vm.selected.Empresa">Aguardandando seleção anterior</p>
+            <p class="lista-item-selecionado muted" ng-show="vm.selected.Empresa && !vm.selected.Empreendimento">Selecione uma das opções</p>
+            <p class="lista-item-selecionado" ng-show="vm.selected.Empreendimento">{{vm.selected.Empreendimento.Nome}}</p>
+            <div class="lista-options" list-collapse-item>
+              <div class="lista-options-group" ng-repeat="instance in vm.Empreendimentos" ng-click="vm.select('Empreendimento', instance)">
+                <input type="checkbox" id="empreendimento_{{::$index}}" 
+                       name="empreendimentos"
+                       ng-checked="vm.isSelected(instance, vm.selected.Empreendimento)">
+                <label for="empreendimento_{{::$index}}">
+                  <span></span>
+                  <span class="check"></span>
+                  <span class="box"></span>
+                  {{::instance.Nome}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!--Obras-->
+        <div class="lista-item-options" list-collapse scroll="content" ng-show="vm.Obras.length">
+          <div class="lista-item-selecoes">
+            <p class="lista-item-selecionado muted" ng-show="!vm.selected.Empreendimento">Aguardandando seleção anterior</p>
+            <p class="lista-item-selecionado muted" ng-show="vm.selected.Empreendimento && !vm.selected.Obra">Selecione uma das opções</p>
+            <p class="lista-item-selecionado" ng-show="vm.selected.Obra">{{vm.selected.Obra.Nome}}</p>
+            <div class="lista-options" list-collapse-item>
+              <div class="lista-options-group" ng-repeat="instance in vm.Obras" ng-click="vm.select('Obra', instance)">
+                <input type="checkbox" id="obra_{{::$index}}" 
+                       name="obras"
+                       ng-checked="vm.isSelected(instance, vm.selected.Obra)">
+                <label for="obra_{{::$index}}">
+                  <span></span>
+                  <span class="check"></span>
+                  <span class="box"></span>
+                  {{::instance.Nome}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!--Fracoes-->
+        <div class="lista-item-options" list-collapse scroll="content" ng-show="vm.Fracoes.length">
+          <div class="lista-item-selecoes">
+            <p class="lista-item-selecionado muted" ng-show="!vm.selected.Obra">Aguardandando seleção anterior</p>
+            <p class="lista-item-selecionado muted" ng-show="vm.selected.Obra && !vm.selected.Fracao">Selecione uma das opções</p>
+            <p class="lista-item-selecionado" ng-show="vm.selected.Fracao">{{vm.selected.Fracao.Nome}}</p>
+            <div class="lista-options" list-collapse-item>
+              <div class="lista-options-group" ng-repeat="instance in vm.Fracoes" ng-click="vm.select('Fracao', instance)">
+                <input type="checkbox" id="fracao_{{::$index}}" 
+                       name="fracoes"
+                       ng-checked="vm.isSelected(instance, vm.selected.Fracao)">
+                <label for="fracao_{{::$index}}">
+                  <span></span>
+                  <span class="check"></span>
+                  <span class="box"></span>
+                  {{::instance.Nome}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!--Subracoes-->
+        <div class="lista-item-options" list-collapse scroll="content" ng-show="vm.Subfracoes.length">
+          <div class="lista-item-selecoes">
+            <p class="lista-item-selecionado muted" ng-show="!vm.selected.Fracao">Aguardandando seleção anterior</p>
+            <p class="lista-item-selecionado muted" ng-show="vm.selected.Fracao && !vm.selected.Subfracao">Selecione uma das opções</p>
+            <p class="lista-item-selecionado" ng-show="vm.selected.Subfracao">{{vm.selected.Subfracao.Nome}}</p>
+            <div class="lista-options" list-collapse-item>
+              <div class="lista-options-group" ng-repeat="instance in vm.Subfracoes">
+                <input type="checkbox" id="subfracao_{{::$index}}" 
+                       name="subfracoes"
+                       ng-checked="vm.isSelected(instance, vm.selected.Subfracao)">
+                <label for="subfracao_{{::$index}}" ng-click="vm.select('Subfracao', instance)">
+                  <span></span>
+                  <span class="check"></span>
+                  <span class="box"></span>
+                  {{::instance.Nome}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <!--Contratadas-->
+  <div class="lista-item">
+    <h3 class="lista-title">Contratadas</h3>
+
+    <div class="lista-tiles">
+      <div class="tile-left">
+        
+      </div>
+      <div class="tile-content">
+        <div class="lista-item-options" list-collapse scroll="content">
+          <div class="lista-item-selecoes">
+            <p class="lista-item-selecionado muted" ng-show="!vm.Contratadas.length && !vm.selected.Contratada">Aguardandando seleção anterior</p>
+            <p class="lista-item-selecionado muted" ng-show="vm.Contratadas.length && !vm.selected.Contratada">Selecione uma das opções</p>
+            <p class="lista-item-selecionado" ng-show="vm.selected.Contratada">{{vm.selected.Contratada.RazaoSocial}}</p>
+            <div class="lista-options" list-collapse-item>
+              <div class="lista-options-group" ng-repeat="empresa in vm.Contratadas">
+                <input type="checkbox" id="contratada_{{::$index}}" 
+                       name="empresas"
+                       ng-checked="vm.isSelected(empresa, vm.selected.Contratada)" 
+                       ng-click="vm.select('Contratada', empresa)">
+                <label for="contratada_{{::$index}}">
+                  <span></span>
+                  <span class="check"></span>
+                  <span class="box"></span>
+                  {{::empresa.RazaoSocial}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--Tarefas-->
+  <div class="lista-item">
+    <h3 class="lista-title">Tarefas</h3>
+
+    <div class="lista-tiles">
+      <div class="tile-left"></div>
+      <div class="tile-content">
+        <div class="lista-item-options" list-collapse scroll="content">
+          <div class="lista-item-selecoes">
+            <p class="lista-item-selecionado muted" ng-show="!vm.selected.Contratada">Aguardandando seleção anterior</p>
+            <p class="lista-item-selecionado muted" ng-show="vm.selected.Contratada && !vm.selected.Tarefa">Selecione uma das opções</p>
+            <p class="lista-item-selecionado" ng-show="vm.selected.Tarefa">{{vm.selected.Tarefa.Nome}}</p>
+            <div class="lista-options" list-collapse-item>
+              <div class="lista-options-group" ng-repeat="instance in vm.Tarefas">
+                <input type="checkbox" id="tarefa_{{::$index}}" 
+                       name="empresas"
+                       ng-checked="vm.isSelected(instance, vm.selected.Tarefa)" 
+                       ng-click="vm.select('Tarefa', instance)">
+                <label for="tarefa_{{::$index}}">
+                  <span></span>
+                  <span class="check"></span>
+                  <span class="box"></span>
+                  {{::instance.Nome}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer id='footer'>
+  <button class="btn-flat btn-ok" 
+          ui-sref="equipe" 
+          ng-disabled="buttons.ok.disabled" 
+          type="button">Confirmar</button>
+</footer>

@@ -1,7 +1,7 @@
 @charset 'utf-8';
 
 #wrapper, #toolbar, #tabs, #content, #footer {
-    outline: 1px dotted lightskyblue;
+    /* outline: 3px dotted lightskyblue; */
 }
 
 *, *:after, *:before {
@@ -12,59 +12,111 @@
 }
 
 html {
-    font-size: 15px;
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
 }
 
 body, 
 #wrapper {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     font-size: 1em;
+    overflow: hidden;
 }
 
 #wrapper {
     position: relative;
     margin: 0;
+    min-width: 360px;
 }
 
 #toolbar {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 4em;
+    height: 3.5rem;
     z-index: 5;
 }
 
 #tabs {
     position: fixed;
     width: 100%;
-    height: 2.5em;
-    top: 4em;
+    height: 2rem;
+    top: 3.5rem;
     background-color: lightgoldenrodyellow;
-    box-shadow: 0 0 2px 0 #002a80;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     z-index: 5;
     overflow: hidden;
 }
 
+[ui-view=content] {
+    height: 100%;
+}
 #content {
-    padding-top: 4.5em;
+/*    padding-bottom nÃƒÂ£o funciona no firefox
+    entÃƒÂ£o para dar a margem do footer cria-se um :after*/
+    height: 100%;
+    position: relative;
+   
+
+    padding-top: 5rem;
     overflow-x: hidden;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
+    
 }
 
 #tabs + #content {
-    padding-top: 7.5em;
+    padding-top: 6.5rem;
+}
+
+#content:after {
+    content: ".";
+    display: block;
+    height: 5rem;
+    font-size: 0;
+    visibility: hidden;
+    box-shadow: none;
+    border-radius: 0;
 }
 
 #footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    min-height: 5em;
-    padding-bottom: 2em;
-    background-color: lightgoldenrodyellow;
-    box-shadow: 0 0 -2px 0 #002a80;
+    height: 3.5rem;
+    padding-bottom: 0.5rem;
+    background-color: #ffffff;
+    box-shadow: 0 -1px 4px rgba(0,0,0,0.2);
     z-index: 5;
     overflow: hidden;
+    display: flex;
+}
+
+.tile-left,
+.tile-right {
+    flex: 0;
+    min-width: 2.75rem;
+    border: 0;
+    background-image: none;
+    background-color: transparent;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    display: flex;
+}
+.tile-left {
+    margin-right: 0rem;
+}
+.tile-right{
+    margin-left: 0rem;
+}
+.tile-content{
+    flex: 1;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }

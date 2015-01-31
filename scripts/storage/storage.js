@@ -4,73 +4,71 @@
 
     angular
             .module('app.storage')
-            .factory('storage', ['nomeEntidades', 'abbr', 'extenso', 'ordem', 'localStorageService', storage]);
+            .factory('Storage', ['localStorageService', storage]);
 
-    function storage(nomes, abbr, extenso, ordem, localstorage) {
+    function storage(localstorage) {
         var _cache = {};
+        
+        var process = {
+            cenario: cenario
+        }
 
         return {
             get: get,
             set: set
         };
 
-        function get(name) {
-            if (_cache[name]) {
-                return _cache[name];
+        function get(entidade) {
+            if (_cache[entidade]) {
+                return _cache[entidade];
             }
 
-            var obj = manager(name, localstorage.get(compact(name)), descompact);
-            _cache[name] = obj;
-            return obj;
+            var data = localstorage.get(entidade);
+            return typeof process[entidade] === 'function' ?
+                process[entidade](data) : data;
         }
 
-        function set(name, data) {
-            _cache[name] = data;
-            var obj = manager(name, angular.copy(data), compact);
-            localstorage.set(compact(name), obj);
-            return obj;
+        function set(entidade, data) {
+            _cache[entidade] = data;
+            var info = typeof process[entidade] === 'function' ?
+                process[entidade](data) : data;
+            localstorage.set(entidade, info);
+            return info;
         }
 
-        function manager(name, el, fn) {
-            if (el === null) {
-                return el;
-            }
-            
-            var obj = {};
-            Object.keys(el).forEach(function (key) {
-                obj[fn(key)] = fn(el[key], name + '.' + key);
-                delete(el[key]);
-            });
-            console.log(obj);
-            
-            return obj;
-        }
-
-        function compact(el, name) {
-            if (angular.isString(el)) {
-                return abbr[el] || el;
-            }
-            
-            if (angular.isArray)
-
-            if (angular.isObject(el)) {
-                return manager(name, el, compact);
-            }
+        function atividade(data) {
+            var props = ["Id", "AtividadePaiId", "Nome", "Cor", "DuracaoMinima", "DuracaoMaxima", "Status", "DataAtualizacao", "AtividadesFilhas", "AtividadesTarefa"];
         }
         
-        function descompact(el, name) {
-            if (el === null) {
-                return el;
-            }
-
-            if (angular.isString(el)) {
-                return extenso[el] || el;
-            }
-
-            if (angular.isObject(el)) {
-                return manager(name, el, descompact);
-            }
+        function atividadeTarefa(data) {
+            var props = ["Id", "AtividadeId", "Atividade", "TarefaId", "Tarefa", "UserId", "Usuario", "ParticipaQS", "PercentualQS", "PercentualQS2", "PercentualQS3", "DataCriacao", "DataAtualizacao", "Status", "Levantamentos"]
         }
+
+       function cenario(data) {
+           var props = ["Id", "Nome", "Descricao", "Obrigatorio", "UserId", "Usuario", "DataCriacao", "DataAtualizacao", "Status", "Valores"];
+           
+           /// modo descompact
+           if (angular.isArray(data)) {
+               
+           }
+           
+           var info = [];
+           Object.keys(data).forEach(function(key) {
+              var obj = data[key];
+              var array = [];
+              Object.keys(obj).forEach(function(key) {
+                  var idx = props.indexOf(key);
+                  array[idx] = obj[key];
+              });
+              info.push(array);
+           });
+           
+           return info;
+       }
+       
+       function tarefa(data) {
+           var props = ["Id", "Nome", "Descricao", "Peso", "Status", "DataCriacao", "DataAtualizacao", "UserId", "Usuario", "Tarefas", "TarefasInativas", "Levantamentos"]
+       }
     }
 
 })(window.angular);

@@ -5,23 +5,23 @@
         /*
          * Angular modules
          */
+        'ngAnimate',
         'ngAria',
         'ngMessages',
         'ngLocale',
         'ngResource',
         'ngSanitize',
-//        'ngMaterial',
 
         /*
          * Our reusable cross app code modules
          */
         'encrypt',
-        'logger',
+        'blocks.logger',
+        'blocks.exception',
 
         /*
          * 3rd Party modules
          */
-        'toaster',
         'ui.router',
         'ui.bootstrap',
         'LocalStorageModule'

@@ -1,0 +1,78 @@
+<div id="content">
+
+  <div class="lista-funcoes">
+    <div class="box-item" ng-repeat="funcao in equipe.funcoes" ng-click="equipe.formulario(funcao)">
+      <p class="box-item-icon">
+	<svg class="icon">
+	  <use xlink:href="#add" />
+	  </svg>
+      </p>
+      <div class="box-item-content">
+        <p class="box-item-title">{{::funcao.Nome}}</p>
+        <p class="box-item-note">{{funcao.Membros.length || 0}} Membros</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="interativo">
+    <form class="trabalhador-dados" name="form" ng-submit="equipe.adicionar()" ng-if="equipe.showForm">
+
+      <div class="form-group" invert-order column>
+        <p order="3" ng-messages="form.nome.$error">
+          <span class="invalid" ng-message="required" ng-if="form.nome.$touched">
+            O campo Nome é obrigatório
+          </span>
+          <span class="invalid" ng-message="blacklist">
+            Já existe este nome na equipe.
+          </span>
+        </p>
+        <input auto-focus blacklist="equipe.nomes" type="text" id="nome" name="nome" order="2" ng-model="equipe.trabalhador.Nome" required/>
+        <label class="form-label" order="1" for="nome">Nome</label>
+      </div>
+
+
+      <div class="form-group" style="margin-bottom: 0.5em;">
+        <label class="form-label" for="tempoExp">Tempo de Experiência</label>
+      </div>
+
+      <div class="form-group">  
+        <input type="number" id="tempoExp" ng-model="equipe.trabalhador.experiencia.tempo">
+        <label class="form-label-secundario" for="tempoAnos">Anos</label>
+      </div>
+
+      <div class="form-group form-buttons">
+        <button type="button"
+                class="btn btn-cancel" 
+                ng-click="equipe.cancelar()">Cancelar</button>
+
+        <button type="submit"
+                class="btn btn-ok"
+                ng-disabled="form.$invalid">Ok</button>
+      </div>
+    </form>
+
+    <div class="lista-trabalhadores">
+      <div class="box-item" ng-repeat="trabalhador in equipe.trabalhadores">
+        <div class="box-item-content">
+          <p class="box-item-title">{{::trabalhador.Nome}}</p>
+          <p class="box-item-note">{{::trabalhador.Funcao.Nome}}{{::equipe.showExp(trabalhador.Experiencia)}}</p>
+        </div>
+        <p class="box-item-icon" ng-click="equipe.remover(trabalhador)">
+	  <svg class="icon">
+	  <use xlink:href="#remove" />
+	  </svg>
+	</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer id='footer'>
+  <button type="button"
+	  class="btn btn-cancel hidden"></button>
+  <button class="btn btn-ok" 
+          ui-sref="recursos" 
+          ng-disabled="equipe.nomes.length === 0" 
+          type="button">Confirmar</button>
+</footer>

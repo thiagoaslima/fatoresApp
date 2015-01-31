@@ -4,7 +4,8 @@
 
     angular
         .module('app.filters')
-        .filter('hashById', hashById);
+        .filter('hashById', hashById)
+        .filter('unhashById', unhashById);
 
     function hashById() {
         return function (array) {
@@ -15,6 +16,23 @@
             });
 
             return obj;
+        };
+    }
+    
+    function unhashById() {
+        return function (obj) {
+            if (!obj) {
+                return;
+            }
+            
+            var array = [];
+
+            var keys = Object.keys(obj);
+            keys.forEach(function (id) {
+                array.push(obj[id]);
+            });
+
+            return array;
         };
     }
 

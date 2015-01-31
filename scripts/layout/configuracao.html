@@ -1,17 +1,187 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-        <p>{{dados}}</p>
-    </body>
-</html>
+<div id="content">
+
+  <!--Empresa-->
+  <div class="card">
+    <h2 class="card-header section-content">Empresa</h2>
+
+    <div class="section" data-list-collapse>
+      <div class="section-icons">
+	<div class="section-icon">
+	  <svg>
+	  <use xlink:href="#empresa" />
+	  </svg>
+	</div>
+      </div>
+
+      <div class="section-content">
+	<div class="section">
+	  <div class="section-content">
+	    <h4 class="section-content-subheader" ng-show="!vm.selected.Empresa">Selecione uma opção</h4>
+	    <h3 class="section-content-header" ng-show="vm.selected.Empresa">{{vm.selected.Empresa.RazaoSocial}}</h3>
+	  </div>
+	</div>
+
+	<div class="box box-options section" data-list-collapse-item>
+	  <div class="box-content section-content" ng-repeat="empresa in vm.Empresas" ng-click="vm.select($event, 'Empresa', empresa)">
+	    <input type="checkbox" id="empresa_{{::$index}}" 
+		   name="empresas"
+		   ng-checked="vm.isSelected(empresa, vm.selected.Empresa)">
+	    <label class="section-content-subheader" for="empresa_{{::$index}}">
+	      <span></span>
+	      <span class="check"></span>
+	      <span class="box"></span>
+	      {{::empresa.RazaoSocial}}
+	    </label>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--Obras-->
+  <div class="card">
+    <h2 class="card-header section-content">Obra</h2>
+
+    <div class="section" data-list-collapse>
+      <div class="section-icons">
+	<div class="section-icon">
+	  <svg>
+	  <use xlink:href="#obra" />
+	  </svg>
+	</div>
+      </div>
+
+      <div class="section-content">
+	<div class="section section-column">
+	  <div class="section-content" ng-click="vm.rebuildLevel($event, vm.selected.Empreendimento)">
+	    <h4 class="section-content-subheader" ng-show="!vm.selected.Empreendimento">Selecione uma opção</h4>
+	    <h3 class="section-content-header" ng-show="vm.selected.Empreendimento">{{vm.selected.Empreendimento.Nome}}</h3>
+	  </div>
+
+	  <div class="section-content" ng-if="vm.selected.Obra || (vm.Obras.length && vm.selected.Empreendimento)" ng-click="vm.rebuildLevel($event, vm.selected.Obra)">
+	    <h4 class="section-content-subheader" ng-show="vm.selected.Empreendimento && !vm.selected.Obra">Selecione uma opção</h4>
+	    <h3 class="section-content-header" ng-show="vm.selected.Obra">{{vm.selected.Obra.Nome}}</h3>
+	  </div>
+
+	  <div class="section-content" ng-if="vm.selected.Fracao || (vm.Obras.length && vm.selected.Obra)" ng-click="vm.rebuildLevel($event, vm.selected.Fracao)">
+	    <h4 class="section-content-subheader" ng-show="vm.selected.Obra && !vm.selected.Fracao">Selecione uma opção</h4>
+	    <h3 class="section-content-header" ng-show="vm.selected.Fracao">{{vm.selected.Fracao.Nome}}</h3>
+	  </div>
+
+	  <div class="section-content" ng-if="vm.selected.Subfracao || (vm.Obras.length && vm.selected.Fracao)" ng-click="vm.rebuildLevel($event, vm.selected.Subfracao)">
+	    <h4 class="section-content-subheader" ng-show="vm.selected.Fracao && !vm.selected.Subfracao">Selecione uma opção</h4>
+	    <h3 class="section-content-header" ng-show="vm.selected.Subfracao">{{vm.selected.Subfracao.Nome}}</h3>
+	  </div>
+	</div>
+
+	<div class="box box-options section" data-list-collapse-item>
+	  <div class="box-content section-content animate-options" ng-repeat="obra in vm.Obras" ng-click="vm.selectObra($event, obra)">
+	    <input type="checkbox" id="obras_{{::$index}}" 
+		   name="obras"
+		   ng-checked="vm.isSelected(obra, vm.selected.Obra)">
+	    <label class="section-content-subheader" for="obras_{{::$index}}">
+	      <span></span>
+	      <span class="check"></span>
+	      <span class="box"></span>
+	      {{::obra.Nome}}
+	    </label>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>
+
+  <!--Contratadas-->
+  <div class="card">
+    <h2 class="card-header section-content">Contratada</h2>
+
+    <div class="section" data-list-collapse>
+      <div class="section-icons">
+	<div class="section-icon">
+	  <svg>
+	  <use xlink:href="#empresa" />
+	  </svg>
+	</div>
+      </div>
+
+      <div class="section-content">
+	<div class="section section-column">
+	  <div class="section-content">
+	    <h4 class="section-content-subheader" ng-show="!vm.selected.Contratada">Selecione uma opção</h4>
+	    <h3 class="section-content-header" ng-show="vm.selected.Contratada">{{vm.selected.Contratada.RazaoSocial}}</h3>
+	  </div>
+	</div>
+
+	<div class="box box-options section" data-list-collapse-item>
+	  <div class="box-content section-content" ng-repeat="empresa in vm.Contratadas" ng-click="vm.select($event, 'Contratada', empresa)">
+	    <input type="checkbox" id="contratada_{{::$index}}" 
+		   name="contratadas"
+		   ng-checked="vm.isSelected(empresa, vm.selected.Contratada)">
+	    <label class="section-content-subheader" for="contratada_{{::$index}}">
+	      <span></span>
+	      <span class="check"></span>
+	      <span class="box"></span>
+	      {{::empresa.RazaoSocial}}
+	    </label>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--Tarefa-->
+  <div class="card">
+    <h2 class="card-header section-content">Tarefa</h2>
+
+    <div class="section" data-list-collapse>
+      <div class="section-icons">
+	<div class="section-icon">
+	  <svg>
+	  <use xlink:href="#tarefa" />
+	  </svg>
+	</div>
+      </div>
+
+      <div class="section-content">
+	<div class="section section-column">
+	  <div class="section-content">
+	    <h4 class="section-content-subheader" ng-show="!vm.selected.Tarefa">Selecione uma opção</h4>
+	    <h3 class="section-content-header" ng-show="vm.selected.Tarefa">{{vm.selected.Tarefa.Nome}}</h3>
+	  </div>
+	</div>
+
+	<div class="box box-options section" data-list-collapse-item>
+	  <div class="box-content section-content" ng-repeat="tarefa in vm.Tarefas" ng-click="vm.select($event, 'Tarefa', tarefa)">
+	    <input type="checkbox" id="tarefa_{{::$index}}" 
+		   name="tarefas"
+		   ng-checked="vm.isSelected(tarefa, vm.selected.Tarefa)">
+	    <label class="section-content-subheader" for="tarefa_{{::$index}}">
+	      <span></span>
+	      <span class="check"></span>
+	      <span class="box"></span>
+	      {{::tarefa.Nome}}
+	    </label>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+<footer id='footer'>
+  <button type="button"
+	  class="btn btn-cancel hidden"></button>
+
+  <button class="btn btn-ok" 
+          ui-sref="equipe" 
+          ng-disabled="vm.buttons.ok.disabled" 
+          type="button">Confirmar</button>
+</footer>

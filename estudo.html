@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]>    <html class="no-js iem7" lang="pt-br"> <![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js" lang="pt-br"> <!--<![endif]-->
+    <head>
+        <base href="/ng/" />
+        <meta charset="utf-8">
+        <title>Fatores App</title>
+
+        <meta name="description" content="">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="cleartype" content="on">
+
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/touch/apple-touch-icon-144x144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/touch/apple-touch-icon-114x114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/touch/apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="img/touch/apple-touch-icon-57x57-precomposed.png">
+        <link rel="shortcut icon" href="img/touch/apple-touch-icon.png">
+
+        <!-- Tile icon for Win8 (144x144 + tile color) -->
+        <meta name="msapplication-TileImage" content="img/touch/apple-touch-icon-144x144-precomposed.png">
+        <meta name="msapplication-TileColor" content="#26a69a">
+
+        <!-- Add to homescreen for Chrome on Android -->
+        <meta name="mobile-web-app-capable" content="yes">
+        <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+        <!-- For iOS web apps. Delete if not needed. https://github.com/h5bp/mobile-boilerplate/issues/94 -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="apple-mobile-web-app-title" content="Fatores App">
+        <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+
+        <!-- This script prevents links from opening in Mobile Safari. https://gist.github.com/1042026 -->
+        <!--
+        <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
+        -->
+        <link href="css/bootstrap/dist/css/normalize.css" rel="stylesheet" type="text/css"/>
+        <link href="css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="libs/toaster/toaster.css" rel="stylesheet" type="text/css"/>
+        <link href="scripts/directives/spinner.css" rel="stylesheet" type="text/css"/>
+
+        <link href="css/layout.css" rel="stylesheet" type="text/css"/>
+        <link href="css/toolbar.css" rel="stylesheet" type="text/css"/>
+        <link href="css/tabs.css" rel="stylesheet" type="text/css"/>
+        <link href="css/lista.css" rel="stylesheet" type="text/css"/>
+        <link href="css/modificadores.css" rel="stylesheet" type="text/css"/>
+
+        <link href="css/fx-input.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <body ng-app="app" ng-strict-di>
+
+    <toaster-container toaster-options="{'time-out': 2000, 'close-button':true, 'animation-class': 'toast-top-right'}"></toaster-container>
+
+    <div id="wrapper">
+        <div id='toolbar'>
+            <div class='toolbar-button toolbar-button-left tile-left'>
+                <p>H</p>
+            </div>
+            <h1 class='toolbar-title tile-content'>Título página</h1>
+            <div class='toolbar-button toolbar-button-right tile-right'>
+                <p class='icon iconButton'>botão</p>
+            </div>
+        </div>
+
+        <ul id='tabs'>
+            <li class='tab'>Option 1</li>
+            <li class='tab active'>Option 2</li>
+            <li class='tab'>Option 3</li>
+            <div class="tabs-indicator"></div>
+        </ul>
+
+        <div id='content' ng-controller="mainController as main">
+
+            <p class="well">{{main.selected.empresa}}</p>
+
+            <label><input type="checkbox" ng-true-value="2" ng-model="main.selected.empresa">2</label>
+
+            <p class="well">{{main.songs}}</p>
+            <p class="well">{{main.selected.songs}}</p>
+
+            <div ng-repeat="song in main.songs">
+                <cefen-radio-multiple 
+                    title="testeArray" 
+                    index="{{$index}}"
+                    base="main.songs"
+                    model="main.selected.songs" 
+                    ng-value="song"
+                    prop="name"></cefen-radio-multiple>
+            </div>
+            <cefen-radio  title="teste" index="0" name="teste" model="main.selected.empresa" ng-value="{Id:1, Name:'Qualquer'}" prop="Name"></cefen-radio>
+
+            <list-select title="empresa" 
+                         subtitle="informação" 
+                         ng-model="main.empresas">
+                <list-select-options type="radio" 
+                                     name="empresas" 
+                                     value="RazaoSocial"
+                                     model="main.selected">
+                </list-select-options>
+            </list-select>
+
+
+        </div>
+
+        <footer id='footer'>
+            <button type="button">Cancelar</button>
+            <button type="button">Finalizar levantamento</button>
+        </footer>
+        <!--        
+        <header ui-view='toolbar'></header>
+        <nav ui-view='tabs'></nav>
+        <main ui-view='content'></main>
+        <aside ui-view='sidebar'></aside>
+        <footer ui-view='footer'></footer>
+        -->
+    </div>
+
+    <loader></loader>
+    <!-- Add your site or application content here -->
+    <script src="libs/jquery-2.1.3.js" type="text/javascript"></script>
+    <script src="libs/jquery.smartresize.js" type="text/javascript"></script>
+
+    <!-- angular core -->
+    <script src="libs/angular-1.3.6/angular.min.js" type="text/javascript"></script>
+    <script src="libs/angular-1.3.6/angular-loader.min.js" type="text/javascript"></script>
+    <script src="libs/angular-1.3.6/angular-animate.min.js" type="text/javascript"></script>
+    <script src="libs/angular-1.3.6/angular-messages.min.js" type="text/javascript"></script>
+    <script src="libs/angular-1.3.6/angular-resource.min.js" type="text/javascript"></script>
+    <script src="libs/angular-1.3.6/angular-sanitize.min.js" type="text/javascript"></script>
+    <script src="libs/angular-1.3.6/angular-aria.min.js" type="text/javascript"></script>
+    <script src="libs/angular-1.3.6/i18n/angular-locale_pt-br.js" type="text/javascript"></script>
+
+    <!--libraries-->
+    <script src="libs/CryptoJS v3.1.2/crypto.min.js" type="text/javascript"></script>
+    <script src="libs/ui-router-master/release/angular-ui-router.min.js" type="text/javascript"></script>
+    <script src="libs/angular-local-storage-master/dist/angular-local-storage.min.js" type="text/javascript"></script>
+    <script src="libs/HammerJS/hammer.2.0.4.min.js" type="text/javascript"></script>
+    <script src="libs/angular-q-spread-master/dist/q-spread.min.js" type="text/javascript"></script>
+    <script src="libs/ui-bootstrap-tpls-0.12.0.min.js" type="text/javascript"></script>
+    <script src="libs/CodeSeven-toastr-4395be3/toastr.js" type="text/javascript"></script>
+
+    <!--config-->
+    <script src="scripts/app.js" type="text/javascript"></script>
+
+    <!--core-->
+    <script src="scripts/core/core.module.js" type="text/javascript"></script>
+    <script src="scripts/core/config.js" type="text/javascript"></script>
+    <script src="scripts/core/constants.js" type="text/javascript"></script>
+    <script src="scripts/core/routes.js" type="text/javascript"></script>
+    <script src="scripts/core/common.js" type="text/javascript"></script>
+    <script src="scripts/core/dataservice.js" type="text/javascript"></script>
+
+    <!--exception-->
+    <script src="scripts/blocks/exception/exception.module.js" type="text/javascript"></script>
+    <script src="scripts/blocks/exception/exception.js" type="text/javascript"></script>
+    <script src="scripts/blocks/exception/exception-handler.provider.js" type="text/javascript"></script>
+
+    <!--logger-->
+    <script src="scripts/blocks/logger/logger.module.js" type="text/javascript"></script>
+    <script src="scripts/blocks/logger/logger.js" type="text/javascript"></script>
+
+    <!--encrypt-->
+    <script src="scripts/encrypt/encrypt.module.js" type="text/javascript"></script>
+    <script src="scripts/encrypt/cryptojs.js" type="text/javascript"></script>
+    <script src="scripts/encrypt/encryptservice.js" type="text/javascript"></script>
+
+    <!--filters-->
+    <script src="scripts/filters/filters.module.js" type="text/javascript"></script>
+    <script src="scripts/filters/hashById.js" type="text/javascript"></script>
+
+    <!--storage-->
+    <script src="scripts/storage/storage.module.js" type="text/javascript"></script>
+    <script src="scripts/storage/storage.js" type="text/javascript"></script>
+
+    <!--directives-->
+    <script src="scripts/directives/directives.module.js" type="text/javascript"></script>
+    <script src="scripts/directives/pageTitle.js" type="text/javascript"></script>
+    <script src="scripts/directives/formReset.js" type="text/javascript"></script>
+    <script src="scripts/directives/loader.js" type="text/javascript"></script>
+    <script src="scripts/directives/seletor/materialCheckbox.js" type="text/javascript"></script>
+    <script src="scripts/directives/seletor/listSelect.js" type="text/javascript"></script>
+    <script src="scripts/directives/cefenRadio.js" type="text/javascript"></script>
+
+    <!--layout-->
+    <script src="scripts/layout/layout.module.js" type="text/javascript"></script>
+    <script src="scripts/layout/toolbar.js" type="text/javascript"></script>
+    <script src="scripts/layout/configuracao.js" type="text/javascript"></script>
+
+    <!--auth-->
+    <script src="scripts/auth/auth.module.js" type="text/javascript"></script>
+    <script src="scripts/auth/login.js" type="text/javascript"></script>
+    <script src="scripts/auth/authservice.js" type="text/javascript"></script>
+
+    <!--models-->
+    <script src="scripts/services/models.module.js" type="text/javascript"></script>
+    <script src="scripts/services/user.js" type="text/javascript"></script>
+    <script src="scripts/services/dataSession.js" type="text/javascript"></script>
+    <script src="scripts/services/entidades.js" type="text/javascript"></script>
+
+    <!--debug-->
+    <script src="libs/debug/findMissingDirectives.js" type="text/javascript"></script>
+    <script src="libs/debug/findUndefinedExpressions.js" type="text/javascript"></script>
+    <script src="libs/debug/stopAngularOverrides.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+                                 angular.module('app')
+                                 .controller('mainController', mainController);
+                                 function mainController() {
+                                 var vm = this;
+                                     vm.selected = {
+                                     };
+                                     vm.songs = [ { 'name': 'song1', 'url': 'http://test/song1.mp3' }, { 'name': 'song2', 'url': 'http://test/song2.mp3' }, {'name': 'song3', 'url': 'http://test/song3.mp3' }];
+                                     vm.empresas = [{
+                                     "Id": 1,
+                                         "RazaoSocial": "Odebrecht",
+                                         "Tarefas": [1, 2, 3, 4, 5],
+                                         "Obras": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
+                                         "DataAtualizacao": "2014-12-26T20:28:19.313"
+                                     }, {
+                                     "Id": 2,
+                                         "RazaoSocial": "Associa",
+                                         "Tarefas": [1, 2, 3, 4, 5],
+                                         "Obras": [],
+                                         "DataAtualizacao": "2014-12-26T20:28:19.577"
+                                     }, {
+                                     "Id": 3,
+                                         "RazaoSocial": "Fabrimonte",
+                                         "Tarefas": [1, 2, 3, 4, 5],
+                                         "Obras": [],
+                                         "DataAtualizacao": "2014-12-26T20:28:19.703"
+                                     }, {
+                                     "Id": 4,
+                                         "RazaoSocial": "Codemi",
+                                         "Tarefas": [1, 2, 3, 4, 5],
+                                         "Obras": [],
+                                         "DataAtualizacao": "2014-12-26T20:28:19.857"
+                                     }, {
+                                     "Id": 5,
+                                         "RazaoSocial": "Comeci",
+                                         "Tarefas": [1, 2, 3, 4, 5],
+                                         "Obras": [],
+                                         "DataAtualizacao": "2014-12-26T20:28:19.967"
+                                     }, {
+                                     "Id": 6,
+                                         "RazaoSocial": "Decisão",
+                                         "Tarefas": [1, 2, 3, 4, 5],
+                                         "Obras": [],
+                                         "DataAtualizacao": "2014-12-26T20:28:20.047"
+                                     }, {
+                                     "Id": 7,
+                                         "RazaoSocial": "TCB",
+                                         "Tarefas": [1, 2, 3, 4, 5],
+                                         "Obras": [],
+                                         "DataAtualizacao": "2014-12-26T20:28:20.123"
+                                     }, {
+                                     "Id": 8,
+                                         "RazaoSocial": "Jetcon",
+                                         "Tarefas": [1, 2, 3, 4, 5],
+                                         "Obras": [],
+                                         "DataAtualizacao": "2014-12-26T20:28:20.217"
+                                     }, {
+                                     "Id": 9,
+                                         "RazaoSocial": "Gesso Cariri",
+                                         "Tarefas": [1, 2, 3, 4, 5],
+                                         "Obras": [],
+                                         "DataAtualizacao": "2014-12-26T20:28:20.313"
+                                     }, {
+                                     "Id": 10,
+                                         "RazaoSocial": "ACA",
+                                         "Tarefas": [1, 2, 3, 4, 5],
+                                         "Obras": [],
+                                         "DataAtualizacao": "2014-12-26T20:28:20.39"
+                                     }];
+                                 }
+    </script>
+</body>
+</html>
+

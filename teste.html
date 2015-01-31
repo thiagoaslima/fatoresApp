@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>teste</title>
+    </head>
+
+    <body>
+
+        <div style="width:100px; height:100px; overflow-y: scroll">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent faucibus lacus in odio efficitur aliquet. Curabitur viverra nibh eu neque pulvinar pulvinar. Cras purus libero, lobortis quis velit sit amet, semper dictum ligula. Nunc sodales odio et enim viverra euismod. Quisque id sollicitudin ante. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean at lacus sed massa efficitur mattis sed ut ante. Nulla id aliquet dui. Phasellus sem turpis, hendrerit quis dignissim non, consequat eget libero. Aenean augue nibh, auctor non enim a, egestas lacinia lorem. Nam commodo justo vitae diam dictum, sed volutpat purus suscipit. Vivamus maximus ornare eros et lobortis. Proin luctus elit vitae blandit semper. Donec sit amet rhoncus turpis. Quisque ut ligula gravida, fermentum eros quis, ultrices augue.</p>
+
+            <p>Vestibulum efficitur congue ipsum, et porttitor lectus tristique ut. Aliquam nec sapien velit. Praesent nulla orci, sagittis quis sem vel, dapibus vehicula justo. Phasellus congue mauris consectetur, iaculis urna eget, aliquam tellus. Aliquam nec orci augue. Nulla ligula nulla, fermentum et volutpat quis, aliquam nec risus. Donec eu ipsum nulla. Sed eu arcu cursus dui semper viverra. Mauris aliquet neque sed dui semper, eu ornare risus finibus. Duis at imperdiet lectus, sed dignissim diam. Ut rhoncus cursus congue. Fusce facilisis ligula ac interdum ullamcorper. Ut faucibus egestas lobortis. Duis vel nibh et purus ullamcorper facilisis. Pellentesque tortor metus, ultricies eu justo sed, porta ornare augue.</p>
+
+            <p>Curabitur eleifend ex nec finibus feugiat. Sed tellus erat, malesuada et tellus sed, egestas maximus velit. Vivamus vel ex porttitor, vehicula massa a, faucibus mauris. Nam ut aliquam felis. Donec mauris dui, rhoncus a nisl non, suscipit varius nisi. Suspendisse potenti. Donec pretium tortor eget auctor hendrerit. Mauris imperdiet, nisi ac efficitur volutpat, purus odio vehicula est, at facilisis nulla lorem sed erat. Nam faucibus ut metus eget consequat. Sed at lobortis purus, ut placerat nisl. Vestibulum fringilla posuere tincidunt. Nunc id mauris non nibh laoreet eleifend.</p>
+
+            <p>Ut luctus cursus ex eget molestie. Vivamus et dignissim mauris, vel cursus purus. Vivamus ac commodo ipsum. Praesent tristique mi eget tellus ultrices, non hendrerit lacus dictum. Vestibulum lacinia arcu erat, id faucibus sapien mollis nec. In id tempor urna. Etiam finibus dui eget faucibus eleifend. Nullam rhoncus velit eleifend enim hendrerit, in convallis lectus efficitur. Nam porttitor interdum est, sed sagittis justo feugiat quis. Quisque et orci aliquet, feugiat turpis vitae, aliquet magna.</p>
+
+            <p>Fusce vulputate, nisi at malesuada vestibulum, nisl mi luctus est, sit amet tristique mi ante sit amet magna. Etiam pharetra commodo placerat. Vestibulum vestibulum, neque vel tempus ornare, lorem est aliquam eros, et fringilla magna risus et nibh. Cras vitae ipsum lectus. Nunc eget consequat elit, condimentum sodales ante. Nulla facilisi. Nullam euismod odio justo, id semper ipsum interdum vitae. Nunc sit amet eros vitae lorem suscipit molestie in ut felis.</p>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+        <script>
+            // http://paulirish.com/2009/throttled-smartresize-jquery-event-handler/
+            (function ($) {
+
+                // debouncing function from John Hann
+                // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
+                var debounce = function (func, threshold, execAsap) {
+                    var timeout;
+
+                    return function debounced() {
+                        var obj = this, args = arguments;
+
+                        function delayed() {
+                            if (!execAsap)
+                                func.apply(obj, args);
+                            timeout = null;
+                        }
+
+                        if (timeout)
+                            clearTimeout(timeout);
+                        else if (execAsap)
+                            func.apply(obj, args);
+
+                        timeout = setTimeout(delayed, threshold || 100);
+                    };
+                };
+
+                // smartscroll
+                jQuery.fn.smartscroll = function (fn, threshold) {
+                    return fn ? this.bind('scroll', debounce(fn, threshold)) : this.trigger(sr);
+                };
+                
+                // smartresize
+                jQuery.fn.smartresize = function (fn, threshold) {
+                    return fn ? this.bind('resize', debounce(fn, threshold)) : this.trigger(sr);
+                };
+
+            })(jQuery);
+            
+            jQuery('div').smartscroll(function() {
+                console.log($(this).scrollTop());
+            }, 200);
+            
+            jQuery(window).smartresize(function() {
+                console.log('resized');
+            }, 200);
+        </script>
+
+    </body>
+
+</html>
