@@ -1,0 +1,58 @@
+<div id="content">
+
+  <!--Atributos-->
+  <div class="card">
+    <h2 class="card-header section-content">Características</h2>
+
+    <div class="section" data-list-collapse ng-repeat="atributo in produto.instance.Atributos">
+
+<!--      <div class="section-icons">
+	<div class="section-icon">
+	  <p class="svg" ng-show="atributo.showMarker(produto.Atributos, $index)">{{atributo.marker()}}</p>
+	</div>
+      </div>-->
+
+      <div class="section-content">
+	<div class="section section-column">
+
+	  <div class="section-content" ng-if="atributo.selectedValor">
+	    <h3 class="section-content-header">{{atributo.Nome}}</h3>
+	    <h4 class="section-content-subheader">{{atributo.selectedValor.Nome}}</h4>
+	  </div>
+
+	</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!--Medição-->
+  <div class="card">
+    <h2 class="card-header section-content">Quantidades</h2>
+
+    <div class="section-content">
+
+      <div class="form-group" ng-repeat="medida in produto.instance.Medicao">
+	<input style="display: inline-block" id="medida_{{::$index}}" name="field" type="number" ng-model="medida.Valor"/>
+	<label for="medida_{{::$index}}" style="display: inline-block" class="form-label">
+	  {{::medida.Unidade}}
+	</label>
+      </div>
+
+      <br />
+    </div>
+  </div>
+
+</div>
+
+
+<footer id='footer'>
+  <button class="btn btn-cancel" 
+	  ui-sref="recursos"
+	  type="hidden">Cancelar</button>
+
+  <button class="btn btn-ok" 
+	  ui-sref="recursos"
+	  type="button">Confirmar</button>
+</footer>

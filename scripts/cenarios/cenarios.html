@@ -1,0 +1,50 @@
+<div id="content">
+
+  <!--Cenarios-->
+  <div class="card" ng-repeat="cenario in cenarios.todos">
+    <h2 class="card-header section-content">{{cenario.Nome}}</h2>
+
+    <div class="section" data-list-collapse>
+<!--      <div class="section-icons">
+	<div class="section-icon">
+	  <p class="icon" ng-show="cenario.showMarker(cenarios.todos, $index)">{{cenario.marker()}}</p>
+	</div>
+      </div>-->
+
+      <div class="section-content">
+	<div class="section">
+	  <div class="section-content">
+	    <h4 class="section-content-subheader" ng-show="!cenario.selectedValor">Selecione uma opção</h4>
+	    <h3 class="section-content-header" ng-show="cenario.selectedValor">{{cenario.selectedValor.Nome}}</h3>
+	  </div>
+	</div>
+
+	<div class="box box-options section" data-list-collapse-item>
+	  <div class="box-content section-content" ng-repeat="valor in cenario.CenariosValor" ng-click="cenarios.select($event, cenario, valor)">
+	    <input type="checkbox" id="valor_{{::$index}}" 
+		   name="valores"
+		   ng-checked="cenario.selectedValor === valor">
+	    <label class="section-content-subheader" for="valor_{{::$index}}">
+	      <span></span>
+	      <span class="check"></span>
+	      <span class="box"></span>
+	      {{::valor.Nome}}
+	    </label>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer id='footer'>
+  <button class="btn btn-cancel" 
+          ui-sref="recursos"
+          ng-click="cenarios.reset()"
+          type="button">Cancelar</button>
+
+  <button class="btn btn-ok" 
+          ng-click="cenarios.gravar()"
+          ui-sref="recursos"
+          type="button">Confirmar</button>
+</footer>

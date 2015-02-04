@@ -1,20 +1,62 @@
-<div id="sidebar">
-    <div class="user">
-        
+<div class="sidebar" ng-click="sidebar.toggleSidebar()">
+
+    <div class="sidebar-content">
+        <div class="sidebar-top">
+            {{::sidebar.userName}}
+        </div>
+
+        <ul class="sidebar-links card">
+            <li ui-sref="equipe" class="section">
+                <div class="section-icons">
+                    <div>
+                        <svg class="icon">
+                        <use xlink:href="#equipe" />
+                        </svg>
+                    </div>
+                </div>
+
+                <p class="section-content section-content-header">
+                    Equipe
+                </p>
+            </li>
+
+            <li class="section">
+                <div class="section-icons">
+                    <div>
+                        <svg class="icon">
+                        <use xlink:href="#equipe" />
+                        </svg>
+                    </div>
+                </div>
+
+                <p class="section-content section-content-header">
+                    Recursos gravados
+                </p>
+            </li>
+        </ul>
+
+        <ul class="sidebar-footer card">
+            <li class="section" ng-click="sidebar.logout()">
+                <div class="section-icons">
+                    <div>
+                        <svg class="icon">
+                        <use xlink:href="#chevron-left" />
+                        </svg>
+                    </div>
+                </div>
+                <p class="section-content section-content-header">Logout</p>
+            </li>
+            <li class="section">
+                <div class="section-icons">
+                    <div>
+                        <svg class="icon">
+                        <use xlink:href="#info_outline" />
+                        </svg>
+                    </div> 
+                </div>
+                <p class="section-content section-content-header">Sobre o aplicativo</p>
+            </li>
+        </ul>
     </div>
-    
-    <ul>
-        <li ui-sref="equipe">
-            <svg class="icon">
-	  <use xlink:href="#equipe" />
-	  </svg>
-            Equipe
-        </li>
-        <li>
-            Recursos gravados
-        </li>
-        <li>
-            Sobre o aplicativo
-        </li>
-    </ul>
+
 </div>

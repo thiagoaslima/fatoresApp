@@ -20,8 +20,12 @@ body {
 }
 
 main {
-    padding-top: 3.5rem;
+    padding-top: 6rem;
     height: 100%;
+}
+[ui-view=tabs]:empty ~ main,
+main.hidden-tabs{
+    padding-top: 3.5rem;
 }
 main:after {
     content: '';

@@ -1,0 +1,69 @@
+<div id="content">
+
+  <div class="card">
+
+    <div class="section">
+      <div class="section-icons">
+	<div class="section-icon">
+	  <svg>
+	  <use xlink:href="#add" />
+	  </svg>
+	</div>
+      </div>
+
+      <div class="section-content">
+	<div class="section">
+	  <div class="section-content">
+	    <a class="section-content-header" data-ui-sref="produtoNovo">Novo produto</a>
+	  </div>
+	</div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <!--Produtos-->
+  <div class="card">
+    <h2 class="card-header section-content">Produtos cadastrados</h2>
+
+    <div class="section" ng-repeat="produto in producao.produtos">
+<!--      <div class="section-icons">
+	<div class="section-icon">
+	  <svg>
+	  <use xlink:href="#empresa" />
+	  </svg>
+	</div>
+      </div>-->
+
+      <div class="section-content" ng-click="producao.atualizar($event, produto)">
+	<div class="section">
+	  
+	  <div class="section-content">
+	    <h3 class="section-content-header">{{::produto.Identificadores}}</h3>
+	    <div style="display:inline-block; width: 49%">
+	      <p class="section-content-description" ng-if="medida.Valor" ng-repeat="medida in produto.Medicao">{{medida.toString()}}</p>
+	    </div>
+
+	    <div style="display:inline-block; width: 49%">
+	      <p class="section-content-description" ng-if="atributo.selectedValor" ng-repeat="atributo in produto.Atributos">{{atributo.toString()}}</p>
+	    </div>
+	  </div>
+	  
+	  <div class="section-icons" ng-click="producao.edit($event, produto)">
+	    <svg class="icon">
+	    <use xlink:href="#edit" />
+	    </svg>
+	  </div>
+	  
+	</div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>

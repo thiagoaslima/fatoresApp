@@ -60,11 +60,14 @@
     border-radius: 50%;
     margin-top: -0.5em;
 }
-.section-icon svg {
+.section-icon svg,
+.section-icon .svg {
     display: inline-block;
     fill: #FFFFFF;
     width: 1.5em;
     height: 1.5em;
+    color: #FFFFFF;
+    line-height: 1.5em;
 }
 
 .icon {

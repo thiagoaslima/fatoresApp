@@ -5,9 +5,16 @@
     angular
 	.module('app.levantamentos')
 	.factory('Levantamentos',
-	    ['$q', 'groupByFilter', 'RecursosLev', 'Sessions', 'logger', levantamentos]);
+	    ['$q',
+		'groupByFilter',
+		'RecursosLev',
+		'Sessions',
+		'cenariosService',
+		'producaoService',
+		'logger',
+		levantamentos]);
 
-    function levantamentos($q, groupBy, RecursosLev, Sessions, logger) {
+    function levantamentos($q, groupBy, RecursosLev, Sessions, cenariosService, producaoService, logger) {
 
 	var service = {
 	    recursos: {
@@ -53,7 +60,9 @@
 	    var defer = $q.defer();
 
 	    var promises = {
-		recursos: RecursosLev.send(hora)
+		recursos: RecursosLev.send(hora),
+		cenarios: cenariosService.send(hora),
+		producao: producaoService.Produtos.send(hora)
 	    };
 
 	    $q.all(promises).then(function (obj) {

@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-#version 1.0 1-29-2015 10:30:03
+#version 1.0 1-31-2015 10:30:09
 
 CACHE:
 
@@ -14,8 +14,14 @@ http://localhost:8383/ng/scripts/layout/configuracao.html
 http://localhost:8383/ng/scripts/layout/equipe.html
 http://localhost:8383/ng/scripts/layout/recursos.html
 http://localhost:8383/ng/scripts/layout/toolbar.html
+http://localhost:8383/ng/scripts/cenarios/cenarios.html
+http://localhost:8383/ng/scripts/producao/producao.html
+http://localhost:8383/ng/scripts/producao/produtoCreate.html
+#http://localhost:8383/ng/scripts/producao/produto.html
 http://localhost:8383/ng/scripts/partials/toolbar.html
 http://localhost:8383/ng/scripts/partials/footer.html
+http://localhost:8383/ng/scripts/partials/sidebar.html
+http://localhost:8383/ng/scripts/partials/tabs.html
 
 
 #style sheets
@@ -28,6 +34,7 @@ http://localhost:8383/ng/css/equipe.css
 http://localhost:8383/ng/css/flex_layout.css
 http://localhost:8383/ng/css/footer2.css
 http://localhost:8383/ng/css/form.css
+http://localhost:8383/ng/css/sidebar.css
 http://localhost:8383/ng/css/fx-input.css
 http://localhost:8383/ng/css/modificadores.css
 http://localhost:8383/ng/css/options-animation.css
@@ -90,6 +97,8 @@ http://localhost:8383/ng/scripts/directives/formReset.js
 http://localhost:8383/ng/scripts/directives/loader.js
 http://localhost:8383/ng/scripts/directives/list-collapse.js
 http://localhost:8383/ng/scripts/directives/blacklist.js
+http://localhost:8383/ng/scripts/directives/sidebarDirective.js
+#http://localhost:8383/ng/scripts/directives/rnstepper.js
 http://localhost:8383/ng/scripts/layout/layout.module.js
 http://localhost:8383/ng/scripts/layout/toolbar.js
 http://localhost:8383/ng/scripts/layout/configuracao.js
@@ -97,6 +106,13 @@ http://localhost:8383/ng/scripts/layout/equipeController.js
 http://localhost:8383/ng/scripts/layout/recursosController.js
 http://localhost:8383/ng/scripts/layout/atividadesController.js
 http://localhost:8383/ng/scripts/layout/comentariosController.js
+http://localhost:8383/ng/scripts/cenarios/cenariosController.js
+http://localhost:8383/ng/scripts/cenarios/cenariosService.js
+http://localhost:8383/ng/scripts/cenarios/Cenarios.js
+http://localhost:8383/ng/scripts/producao/producaoController.js
+http://localhost:8383/ng/scripts/producao/producaoService.js
+http://localhost:8383/ng/scripts/producao/produtoController.js
+http://localhost:8383/ng/scripts/producao/ProdutoModel.js
 http://localhost:8383/ng/scripts/partials/toolbarController.js
 http://localhost:8383/ng/scripts/partials/footerController.js
 http://localhost:8383/ng/scripts/auth/auth.module.js

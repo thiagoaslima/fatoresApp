@@ -1,0 +1,89 @@
+<div id="content">
+
+  <div class="card">
+    <h2 class="card-header section-content">Nome do produto</h2>
+
+    <form class="section form-group" novalidate name="identificador">
+      <input type="text" class="section-content" auto-focus blacklist="produto.Nomes" 
+	     ng-model="produto.Identificadores" 
+	     placeholder="Nome do produto" 
+	     required />
+    </form>
+
+  </div>
+
+
+  <!--Atributos-->
+  <div class="card">
+    <h2 class="card-header section-content">Características</h2>
+
+    <div class="section" data-list-collapse ng-repeat="atributo in produto.Atributos">
+
+      <div class="section-icons">
+	<div class="section-icon">
+	  <p class="svg" ng-show="atributo.showMarker(produto.Atributos, $index)">{{atributo.marker()}}</p>
+	</div>
+      </div>
+
+      <div class="section-content">
+	<div class="section section-column">
+
+	  <div class="section-content">
+	    <h3 class="section-content-header">{{atributo.Nome}}</h3>
+	    <h4 class="section-content-description" ng-show="!atributo.selectedValor">Selecione uma opção</h4>
+	    <h4 class="section-content-subheader" ng-show="atributo.selectedValor">{{atributo.selectedValor.Nome}}</h4>
+	  </div>
+
+	  <div class="box box-options section" data-list-collapse-item>
+	    <div class="box-content section-content" ng-repeat="valor in atributo.CenariosValor" ng-click="produto.select($event, atributo, valor)">
+	      <input type="checkbox" id="valor_{{::$index}}" 
+		     name="valores"
+		     ng-checked="atributo.selectedValor === valor">
+	      <label class="section-content-subheader" for="valor_{{::$index}}">
+		<span></span>
+		<span class="check"></span>
+		<span class="box"></span>
+		{{::valor.Nome}}
+	      </label>
+	    </div>
+	  </div>
+
+	</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!--Medição-->
+  <div class="card">
+    <h2 class="card-header section-content">Quantidades</h2>
+
+    <div class="section-content">
+
+      <div class="form-group" ng-repeat="medida in produto.Medicao">
+	<input style="display: inline-block" id="medida_{{::$index}}" name="field" type="number" ng-model="medida.Valor"/>
+	<label for="medida_{{::$index}}" style="display: inline-block" class="form-label">
+	  {{::medida.Unidade}}
+	</label>
+      </div>
+
+      <br />
+    </div>
+  </div>
+
+</div>
+
+
+<footer id='footer'>
+  <button class="btn btn-cancel" 
+	  ui-sref="recursos"
+	  ng-click="produto.reset()"
+	  type="button">Cancelar</button>
+
+  <button class="btn btn-ok" 
+	  ng-click="produto.edit()"
+	  ui-sref="recursos"
+	  ng-disabled = "identificador.$invalid || produto.Identificadores === '' || !produto.Identificadores"
+	  type="button">Confirmar</button>
+</footer>

@@ -1,0 +1,72 @@
+@charset 'utf-8';
+
+#tabs {
+    position: fixed;
+    top: 3.5em;
+    padding-left: 0;
+    padding-right: 0;
+    list-style: none;
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: #4CAF50;
+    z-index: 5;
+    padding-top: 0.3em;
+    padding-bottom: 0;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}
+#tabs.hidden-tabs {
+    height: 0;
+}
+
+#tabs ul {
+    list-style: none;
+    padding: 0 0.25em;
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 0;
+}
+
+.tab {
+    flex-grow: 1;
+    font-family: Roboto, sans-serif;
+    text-transform: uppercase;
+    color: #FAFAFA;
+    font-size: 0.8125em;
+    cursor: pointer;
+    font-weight: 300;
+    letter-spacing: 0.7px;
+}
+.tab a {
+    display: block;
+    text-align: center;
+    padding-top: 0.5em;
+    padding-bottom: 0.75em;
+    color: #FAFAFA;
+}
+
+.tabs-indicator {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background: blue;
+    transition: all 0.3s;
+}
+
+.first ~ .tabs-indicator{
+    left: 1em;
+    right: 64%;
+    transition: all 0.3s;
+}
+.second ~ .tabs-indicator{
+    left: 34%;
+    right: 34%;
+    transition: all 0.3s;
+}
+.third ~ .tabs-indicator{
+    left: 64%;
+    right: 1em;
+    transition: all 0.3s;
+}
